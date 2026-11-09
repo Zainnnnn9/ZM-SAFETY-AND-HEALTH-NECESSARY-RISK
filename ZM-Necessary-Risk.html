@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Necessary Risk</title>
+<meta name="author" content="Zain Mustafa, ZM Safety & Risk">
+<meta name="copyright" content="© 2026 ZM Safety & Risk. All rights reserved.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ZM Safety & Risk house style: white paper, ink type, gold leaf. Harm in deep crimson, recovery in sage.
+     Layout: an annual-report long read. Expanded grotesk for authority, a serif italic for the human voice, mono for the record. */
+  --paper:#ffffff;
+  --linen:#f7f5ef;
+  --stone:#e3e1da;
+  --ink:#111418;
+  --graphite:#55585c;
+  --gold:#c8a24a;
+  --gold-deep:#8a6a1f;
+  --harm:#b23a2e;
+  --sage:#2f6b5a;
+  --foil:linear-gradient(100deg,#8a6a1f 0%,#c8a24a 22%,#f1dc9b 38%,#c8a24a 52%,#9c7a2a 70%,#e9cf86 86%,#8a6a1f 100%);
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-padding-top:70px}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;font-stretch:100%}
+h1,h2,h3,h4{font-family:var(--display);text-wrap:balance;margin:0;font-stretch:125%;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--gold-deep)}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;font-stretch:100%;letter-spacing:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.prose{max-width:64ch}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep)}
+.dim{color:var(--graphite)}
+.foil{background:var(--foil);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:foil 9s ease-in-out infinite}
+@keyframes foil{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.rule-gold{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border:0;margin:0}
+sup.cite a{font-family:var(--mono);font-size:10.5px;text-decoration:none;color:var(--gold-deep);padding:0 1px;font-weight:500}
+sup.cite a:hover{text-decoration:underline}
+
+/* LETTERHEAD */
+.letterhead{border-bottom:1px solid var(--stone)}
+.letterhead .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:16px;padding-bottom:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
+.brand svg{width:52px;height:52px;flex:none}
+.brand b{display:block;font-family:var(--display);font-stretch:125%;font-weight:800;font-size:19px;letter-spacing:-.01em;line-height:1.1}
+.brand span{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:var(--graphite);text-transform:uppercase;margin-top:3px}
+.docref{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--graphite);text-align:right;line-height:1.6;text-transform:uppercase}
+
+/* NAV */
+nav.loops{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--stone)}
+nav.loops .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none;align-items:center}
+nav.loops .mini{flex:none;width:26px;height:26px;margin-right:6px}
+nav.loops a{flex:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--graphite);text-decoration:none;padding:6px 11px;border:1px solid var(--stone);border-radius:999px;white-space:nowrap;transition:all .2s}
+nav.loops a:hover,nav.loops a.on{color:var(--ink);background:#fbf1d6;border-color:var(--gold)}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--stone);background:radial-gradient(1200px 500px at 85% 20%,#fbf6e6 0%,rgba(255,255,255,0) 60%),var(--paper)}
+#lanes{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-inner{position:relative;padding:76px 0 64px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.9fr);gap:30px;align-items:center}
+@media (max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-seal{max-width:260px;justify-self:center}}
+.hero h1{font-size:clamp(58px,10.5vw,150px);line-height:.84;font-weight:900;text-transform:uppercase;letter-spacing:-.035em}
+.hero h1 span{display:block}
+.hero .lede{font-family:var(--serif);font-style:italic;font-size:clamp(24px,3vw,34px);line-height:1.2;max-width:24ch;margin-top:8px}
+.hero .note{max-width:54ch;color:var(--graphite);font-size:16px;border-left:2px solid var(--gold);padding-left:14px}
+.hero .tag{font-family:var(--display);font-stretch:125%;font-weight:700;font-size:14px;letter-spacing:.02em;text-transform:uppercase}
+.hero .tag i{font-style:normal;color:var(--gold-deep)}
+.hero-copy{display:grid;gap:20px}
+.hero-seal{position:relative;width:100%;max-width:420px;justify-self:end}
+.hero-seal svg{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 40px rgba(138,106,31,.18))}
+.spin{transform-origin:200px 200px;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.clock{font-family:var(--mono);font-size:12.5px;color:var(--graphite);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.clock b{color:var(--harm);font-weight:500}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--harm);box-shadow:0 0 0 0 rgba(178,58,46,.5);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(178,58,46,0)}100%{box-shadow:0 0 0 0 rgba(178,58,46,0)}}
+.byline{font-family:var(--mono);font-size:12px;color:var(--graphite);letter-spacing:.06em}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--stone);border-bottom:1px solid var(--stone)}
+.stat{padding:28px 22px;display:grid;gap:6px;align-content:start;background:var(--paper);border:0;color:inherit;text-align:left;cursor:pointer;font:inherit;transition:background .25s;position:relative}
+.stat::after{content:"";position:absolute;left:22px;right:22px;bottom:0;height:2px;background:var(--foil);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.stat:hover{background:var(--linen)}
+.stat:hover::after{transform:scaleX(1)}
+.stat .num{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(38px,4.6vw,56px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.stat .num small{font-size:.45em;color:var(--gold-deep);margin-left:4px;letter-spacing:0}
+.stat .lbl{font-size:14px;color:var(--graphite);line-height:1.45}
+.stat .tg{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--harm)}
+.stat .tg.b{color:var(--gold-deep)}
+.stat .from{font-family:var(--mono);font-size:10.5px;color:var(--graphite);opacity:.85}
+@media (max-width:820px){.stats{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.stats{grid-template-columns:1fr}}
+
+section{padding:96px 0;border-bottom:1px solid var(--stone)}
+section.alt{background:var(--linen)}
+.sec-head{display:grid;gap:14px;margin-bottom:40px}
+.sec-head h2{font-size:clamp(36px,5.4vw,64px);line-height:.95;font-weight:800;text-transform:uppercase;letter-spacing:-.025em}
+.sec-head h2 em.s{text-transform:none;font-size:1.05em;color:var(--gold-deep)}
+.num-mark{font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold-deep)}
+
+/* CARDS */
+.card,.panel,.inst{background:var(--paper);border:1px solid var(--stone);border-radius:16px;box-shadow:0 1px 0 rgba(17,20,24,.03),0 12px 30px -18px rgba(17,20,24,.18)}
+.panel{padding:26px;display:grid;gap:14px;align-content:start}
+.panel h3{font-size:30px;font-weight:800;line-height:1.02;letter-spacing:-.02em}
+.pill{justify-self:start;display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:999px;border:1px solid currentColor}
+.pill.r{color:var(--harm)}
+.pill.b{color:var(--gold-deep)}
+.pill.g{color:var(--sage)}
+.panel dl{margin:0;display:grid;gap:12px}
+.panel dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
+.panel dd{margin:2px 0 0;font-size:15.5px}
+
+/* SYSTEM MAP */
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:900px){.mapgrid{grid-template-columns:1fr}}
+.mapcard{position:relative;background:var(--paper);border:1px solid var(--stone);border-radius:16px;padding:10px;box-shadow:0 12px 30px -18px rgba(17,20,24,.18)}
+#sysmap{width:100%;height:auto;display:block;color:var(--graphite)}
+.edge{fill:none;stroke:var(--stone);stroke-width:1.6}
+.edge.flow{stroke:var(--gold);stroke-width:2.2;stroke-dasharray:6 10;animation:flow var(--spd,1.4s) linear infinite;transition:opacity .4s}
+.edge.dimmed{opacity:.12!important}
+@keyframes flow{to{stroke-dashoffset:-32}}
+.edge-lbl{font-family:var(--mono);font-size:11px;fill:var(--graphite);transition:opacity .4s}
+.node{cursor:pointer;transition:opacity .4s}
+.node.dimmed{opacity:.25}
+.node .halo{fill:var(--harm);opacity:.14;transition:r .5s ease,opacity .5s}
+.node .disc{fill:var(--paper);stroke:var(--ink);stroke-width:1.5;transition:stroke .2s,stroke-width .2s}
+.node .code{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:24px;fill:var(--ink)}
+.node .name{font-family:var(--mono);font-size:10px;fill:var(--graphite);letter-spacing:.06em}
+.node.balancing .code{fill:var(--gold-deep)}
+.node:hover .disc,.node.active .disc{stroke:var(--gold);stroke-width:3}
+.node:focus{outline:none}
+.node:focus-visible .disc{stroke:var(--gold);stroke-width:4}
+.core-txt{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:15px;fill:#fff;letter-spacing:.06em}
+.core-sub{font-family:var(--serif);font-style:italic;font-size:14px;fill:#e9cf86}
+.legend{display:flex;flex-wrap:wrap;gap:16px;padding:10px 8px 4px;font-family:var(--mono);font-size:11.5px;color:var(--graphite)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.story-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 8px 4px;border-top:1px solid var(--stone);margin-top:8px}
+.story-cap{position:absolute;left:18px;right:18px;top:16px;background:rgba(17,20,24,.94);color:#fff;border-radius:12px;padding:14px 16px;font-size:15px;line-height:1.5;display:none;box-shadow:0 20px 40px -20px rgba(0,0,0,.5)}
+.story-cap.show{display:block;animation:rise .4s ease}
+.story-cap .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#e9cf86;display:block;margin-bottom:4px}
+.story-prog{height:2px;background:rgba(255,255,255,.15);border-radius:2px;margin-top:10px;overflow:hidden}
+.story-prog i{display:block;height:100%;width:0;background:var(--foil)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* BUTTONS + INPUTS */
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+button.btn{font:600 14px var(--body);color:#fff;background:var(--ink);border:0;border-radius:999px;padding:10px 18px;cursor:pointer;transition:transform .15s,box-shadow .2s;letter-spacing:.01em}
+button.btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px -10px rgba(17,20,24,.6)}
+button.btn.gold{background:var(--foil);background-size:200% 100%;color:var(--ink)}
+button.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--stone)}
+button.btn.ghost.on{background:#fbf1d6;border-color:var(--gold)}
+input[type=range]{width:100%;accent-color:var(--gold);height:28px;cursor:pointer}
+input[type=number]{font:500 16px var(--mono);width:100%;padding:10px 12px;border:1px solid var(--stone);border-radius:10px;background:var(--paper);color:var(--ink)}
+.lever{display:grid;gap:4px}
+.lever label{display:flex;justify-content:space-between;gap:10px;font-size:15px}
+.lever label b{font-weight:600}
+.lever label span{font-family:var(--mono);color:var(--gold-deep)}
+
+/* SIMULATOR */
+.sim{margin-top:28px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px}
+@media (max-width:900px){.sim{grid-template-columns:1fr}}
+.levers{display:grid;gap:14px}
+.harmnum{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:104px;line-height:.85;font-variant-numeric:tabular-nums;letter-spacing:-.04em;transition:color .4s}
+.bars{display:grid;gap:8px}
+.bar{display:grid;grid-template-columns:40px 1fr 40px;gap:10px;align-items:center;font-family:var(--mono);font-size:12px;color:var(--graphite)}
+.bar .track{height:8px;background:var(--linen);border-radius:4px;overflow:hidden;border:1px solid var(--stone)}
+.bar .fill{height:100%;border-radius:4px;transition:width .5s ease,background .5s}
+.caveat{font-size:13.5px;color:var(--graphite);border-top:1px dashed var(--stone);padding-top:12px}
+
+/* CHAPTERS */
+.chapter{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px;align-items:start}
+@media (max-width:900px){.chapter{grid-template-columns:1fr;gap:28px}}
+.chapter .txt{display:grid;gap:16px;min-width:0}
+.chapter h2{font-size:clamp(34px,4.4vw,54px);font-weight:900;text-transform:uppercase;line-height:.92;letter-spacing:-.03em}
+.chapter h2 em.s{text-transform:none;color:var(--gold-deep);font-size:1.08em}
+.bigcode{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:120px;line-height:.8;letter-spacing:-.05em;-webkit-text-stroke:1.5px var(--gold);color:transparent;opacity:.9}
+.cycle{list-style:none;margin:0;padding:0;border-left:1px solid var(--gold)}
+.cycle li{position:relative;padding:6px 0 6px 20px;font-size:15px}
+.cycle li::before{content:"";position:absolute;left:-5px;top:14px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:2px solid var(--harm)}
+.cycle.b li::before{border-color:var(--gold)}
+.cycle li:last-child{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--gold-deep)}
+.lever-note{font-size:15px;background:var(--linen);border-left:3px solid var(--sage);padding:12px 14px;border-radius:0 10px 10px 0}
+.lever-note b{color:var(--sage);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:2px}
+.right{display:grid;gap:18px;min-width:0}
+.inst{padding:22px;display:grid;gap:16px;min-width:0}
+.readout{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.readout .big{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:56px;line-height:.9;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.readout .unit{color:var(--graphite);font-size:15px;flex:1 1 200px}
+.src{font-family:var(--mono);font-size:11px;color:var(--graphite)}
+.evidence{border:1px solid var(--stone);border-radius:16px;padding:18px 20px;display:grid;gap:10px;background:linear-gradient(180deg,#fffdf7,#fff)}
+.evidence h4{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);font-stretch:100%}
+.evidence ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.evidence li{font-size:14.5px;padding-left:16px;position:relative;line-height:1.5}
+.evidence li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
+.evidence li b{font-family:var(--mono);font-weight:500}
+
+.gauge{position:relative;height:46px;background:var(--linen);border:1px solid var(--stone);border-radius:10px;overflow:hidden}
+.gauge .g-fill{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--sage),var(--gold) 60%,var(--harm));transition:width .3s}
+.gauge .g-mark{position:absolute;top:0;bottom:0;width:2px;background:var(--ink)}
+.gauge .g-tag{position:absolute;top:4px;font-family:var(--mono);font-size:11px;transform:translateX(6px)}
+.scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--graphite)}
+.split{display:flex;height:34px;border-radius:8px;overflow:hidden;font-family:var(--mono);font-size:12px}
+.split div{display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden;color:#fff}
+
+.cells{display:grid;grid-template-columns:repeat(20,1fr);gap:3px}
+.cells i{aspect-ratio:1;border-radius:2px;background:var(--linen);border:1px solid var(--stone);transition:background .25s}
+.cells i.on{background:var(--harm);border-color:var(--harm)}
+.cells.small{gap:2px}
+.cells.small i{border-radius:1px;border:0;background:var(--stone)}
+.cells.small i.on{background:var(--gold)}
+.cmp{display:grid;gap:10px}
+.cmp .row{display:grid;grid-template-columns:120px 1fr 50px;gap:10px;align-items:center;font-size:14px}
+.cmp .track{height:26px;background:var(--linen);border-radius:8px;overflow:hidden;border:1px solid var(--stone)}
+.cmp .fill{height:100%;border-radius:8px;transition:width .8s ease}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.picks h5{margin:0 0 6px;font:500 10.5px var(--mono);letter-spacing:.12em;color:var(--graphite);text-transform:uppercase}
+
+svg.chart{width:100%;height:auto;display:block;overflow:visible}
+.chart .grid line{stroke:var(--stone)}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--graphite)}
+.chart .pt{cursor:pointer}
+.chart .pt:focus{outline:none}
+.chart .pt:focus circle.ring,.chart .pt:hover circle.ring{stroke:var(--ink);stroke-width:2}
+
+.tl .axis{height:4px;background:var(--stone);border-radius:2px;position:relative;margin:36px 0 44px}
+.tl .gap{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,var(--harm),var(--gold));border-radius:2px}
+.tl .m{position:absolute;top:-6px;width:16px;height:16px;border-radius:50%;background:var(--paper);border:2px solid var(--gold-deep);transform:translateX(-50%);cursor:pointer;padding:0}
+.tl .m.end{border-color:var(--sage);background:var(--sage)}
+.tl .m.open{border-color:var(--harm);border-style:dashed}
+.tl .m:hover,.tl .m.on{background:var(--gold)}
+.tl .y{position:absolute;top:18px;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--graphite);white-space:nowrap}
+.tl .y.up{top:-28px}
+.tl-out{font-size:14.5px;min-height:3.2em;border-left:2px solid var(--gold);padding-left:12px}
+
+/* CASE */
+.casegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.casegrid{grid-template-columns:1fr}}
+.case{padding:22px;display:grid;gap:10px;align-content:start}
+.case .k{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:48px;line-height:1;letter-spacing:-.03em}
+.case h3{font-size:22px;font-weight:800;line-height:1.05}
+.case p{font-size:15px;color:var(--graphite)}
+
+/* AUDIT */
+.audit{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:900px){.audit{grid-template-columns:1fr}}
+.q{padding:16px 0;border-bottom:1px solid var(--stone);display:grid;gap:10px}
+.q:last-child{border-bottom:0}
+.q p{font-size:15.5px}
+.q p .lp{font-family:var(--mono);font-size:10.5px;color:var(--gold-deep);letter-spacing:.1em;margin-right:6px}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media (max-width:520px){.opts{grid-template-columns:1fr 1fr}}
+.opts button{font:500 13px var(--body);padding:8px 6px;border:1px solid var(--stone);background:var(--paper);border-radius:8px;cursor:pointer;color:var(--ink)}
+.opts button:hover{border-color:var(--gold)}
+.opts button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sticky{position:sticky;top:76px}
+#radar{width:100%;max-width:380px;margin:0 auto;display:block}
+.result h3{font-size:26px}
+.progress{height:4px;background:var(--stone);border-radius:2px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--foil);transition:width .4s}
+
+/* CALC */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+.field{display:grid;gap:6px}
+.field label{font-size:14px;font-weight:600}
+.field small{font-size:12.5px;color:var(--graphite)}
+.out-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--stone);border-radius:12px;overflow:hidden;border:1px solid var(--stone)}
+.out-grid div{background:var(--paper);padding:16px}
+.out-grid .v{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:34px;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.out-grid .l{font-size:13px;color:var(--graphite);margin-top:6px}
+
+/* TRENDS */
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+
+/* LESSONS / WORK */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (max-width:900px){.three{grid-template-columns:1fr}}
+.card{padding:24px;display:grid;gap:10px;align-content:start}
+.card h3{font-size:22px;font-weight:800;line-height:1.08}
+.card p,.card li{font-size:15px;color:var(--graphite)}
+.card ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.card .ic{font-family:var(--serif);font-style:italic;font-size:42px;line-height:1;color:var(--gold-deep)}
+.closing{font-family:var(--display);font-stretch:125%;font-weight:900;font-size:clamp(34px,5.2vw,64px);line-height:.95;text-transform:uppercase;letter-spacing:-.03em;max-width:20ch}
+.closing em.s{text-transform:none;display:block;font-size:1.05em}
+.dont{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:700px){.dont{grid-template-columns:1fr}}
+.dont div{border:1px solid var(--stone);border-radius:12px;padding:16px;font-size:14.5px;color:var(--graphite);background:var(--paper)}
+.dont b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+.dont b::before{content:"✕";color:var(--harm);margin-right:8px;font-family:var(--mono)}
+.statement{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.4;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:20px 0;max-width:70ch}
+.contact{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;background:var(--ink);color:#fff;border-radius:20px;padding:32px;position:relative;overflow:hidden}
+@media (max-width:700px){.contact{grid-template-columns:1fr}}
+.contact svg{width:140px;height:140px}
+.contact h3{font-size:clamp(26px,3.4vw,40px);font-weight:800;line-height:1.02;color:#fff}
+.contact a.mail{font-family:var(--mono);font-size:18px;color:#e9cf86;text-decoration:none;border-bottom:1px solid rgba(233,207,134,.5)}
+.contact p{color:#c9ccd0;font-size:15px}
+
+.method{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:820px){.method{grid-template-columns:1fr}}
+
+footer{padding:64px 0 40px;color:var(--graphite);font-size:14px;background:var(--linen)}
+footer ol{padding-left:24px;display:grid;gap:10px;margin:16px 0 0;max-width:92ch}
+footer li{scroll-margin-top:80px}
+footer li:target{color:var(--ink);background:#fbf1d6;outline:1px solid var(--gold);border-radius:6px}
+footer li a{word-break:break-word}
+.legal{margin-top:40px;padding-top:24px;border-top:1px solid var(--stone);display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start}
+@media (max-width:700px){.legal{grid-template-columns:1fr}}
+.legal svg{width:64px;height:64px}
+.legal p{font-size:13px;line-height:1.6}
+.legal p b{color:var(--ink)}
+.docfoot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite);margin-top:28px}
+
+@media (prefers-reduced-motion:reduce){
+  .edge.flow,.pulse,.spin,.foil{animation:none}
+  *{transition:none!important}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  section{padding:68px 0}
+  .harmnum{font-size:76px}
+  .readout .big{font-size:46px}
+  .bigcode{font-size:84px}
+  .cmp .row{grid-template-columns:92px 1fr 44px}
+  .docref{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<!-- reusable seal -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a6a1f"/><stop offset=".35" stop-color="#e9cf86"/><stop offset=".6" stop-color="#c8a24a"/><stop offset="1" stop-color="#8a6a1f"/>
+    </linearGradient>
+    <path id="ringPath" d="M200,200 m-150,0 a150,150 0 1,1 300,0 a150,150 0 1,1 -300,0"/>
+    <symbol id="seal" viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="196" fill="#fff"/>
+      <circle cx="200" cy="200" r="188" fill="none" stroke="url(#goldG)" stroke-width="5"/>
+      <circle cx="200" cy="200" r="176" fill="none" stroke="#c8a24a" stroke-width="1"/>
+      <g class="spin">
+        <text font-family="IBM Plex Mono, monospace" font-size="17" fill="#111418"><textPath href="#ringPath" textLength="925" lengthAdjust="spacing">ZM SAFETY &amp; RISK · SAFETY &amp; RISK ADVISORY · CALGARY, ALBERTA · EST. 2026 ·</textPath></text>
+      </g>
+      <circle cx="200" cy="200" r="122" fill="none" stroke="#c8a24a" stroke-width="1"/>
+      <circle cx="200" cy="200" r="112" fill="#111418"/>
+      <text x="200" y="232" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="900" font-stretch="125%" font-size="96" fill="url(#goldG)" letter-spacing="-4">ZM</text>
+      <line x1="150" y1="256" x2="250" y2="256" stroke="#c8a24a" stroke-width="1.5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="letterhead">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="ZM Safety & Risk">
+      <svg viewBox="0 0 400 400" aria-hidden="true"><use href="#seal"/></svg>
+      <div><b>ZM Safety &amp; Risk</b><span>Safety &amp; Risk Advisory · Calgary, Alberta</span></div>
+    </a>
+    <div class="docref">ZMSR-RS-01 · Research publication<br>Published November 2026</div>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <canvas id="lanes" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">A Map the System study · ZM Safety &amp; Risk research</div>
+      <h1><span>Necessary</span><span class="foil">Risk</span></h1>
+      <p class="lede">How the global supply chain depends on controlled danger to survive.</p>
+      <p class="note">Six feedback loops keep harm built into one of the most efficient systems ever made. Each one is mapped, measured against published evidence and open to exploration. Every figure links to its source.</p>
+      <p class="tag">Safer by design. <i>Smarter by data.</i></p>
+      <p class="clock"><span class="pulse" aria-hidden="true"></span>In 2023, a US worker died from a work injury every <b>99 minutes</b>.<sup class="cite"><a href="#s12">12</a></sup> At that rate since this page opened: <b id="since">0.000</b></p>
+      <p class="byline">Research &amp; analysis · Zain Mustafa, Founder &amp; Principal Consultant</p>
+    </div>
+    <div class="hero-seal" aria-hidden="true"><svg viewBox="0 0 400 400"><use href="#seal"/></svg></div>
+  </div>
+</header>
+
+<nav class="loops" aria-label="Sections">
+  <div class="wrap">
+    <svg class="mini" viewBox="0 0 400 400" aria-hidden="true"><use href="#seal"/></svg>
+    <a href="#system">System map</a><a href="#r1">R1 Fatigue</a><a href="#r2">R2 Procurement</a><a href="#r3">R3 Automation</a><a href="#b1">B1 Regulation</a><a href="#r4">R4 Rebound</a><a href="#b2">B2 Reporting</a><a href="#case">Case file</a><a href="#trends">2035</a><a href="#audit">Loop audit</a><a href="#calc">Hidden cost</a><a href="#work">Work with ZM</a><a href="#sources">Sources</a>
+  </div>
+</nav>
+
+<div class="stats">
+  <button class="stat" data-go="r1"><span class="tg">R1 · FATIGUE</span><span class="num" data-count="745" data-suf="K">745<small>K</small></span><span class="lbl">deaths from stroke and heart disease in 2016 linked to 55+ hour weeks</span><span class="from">WHO / ILO</span></button>
+  <button class="stat" data-go="r2"><span class="tg">R2 · PROCUREMENT</span><span class="num">1 in 6</span><span class="lbl">US workplace deaths in 2014 were contract workers, up from 1 in 8 in 2011</span><span class="from">BLS CFOI via AFL-CIO / NCOSH</span></button>
+  <button class="stat" data-go="r3"><span class="tg">R3 · AUTOMATION</span><span class="num" data-count="54" data-suf="%">54<small>%</small></span><span class="lbl">higher serious-injury rate at robotic vs. non-robotic Amazon sites, 2019</span><span class="from">Strategic Organizing Center</span></button>
+  <button class="stat" data-go="b1"><span class="tg b">B1 · REGULATION</span><span class="num" data-count="191" data-suf="YRS">191<small>YRS</small></span><span class="lbl">for federal OSHA to inspect every workplace once. It was 84 years in 1992</span><span class="from">AFL-CIO Death on the Job 2026</span></button>
+  <button class="stat" data-go="r4"><span class="tg">R4 · REBOUND</span><span class="num">+9.6<small>%</small></span><span class="lbl">rise in shipping GHG emissions 2012–2018, while carbon intensity improved ~11%</span><span class="from">Fourth IMO GHG Study</span></button>
+  <button class="stat" data-go="b2"><span class="tg b">B2 · REPORTING</span><span class="num" data-count="69" data-suf="%">69<small>%</small></span><span class="lbl">of injuries the official US survey may miss, at the high estimate (low: 33%)</span><span class="from">Leigh et al., 2004</span></button>
+</div>
+
+<!-- SYSTEM -->
+<section id="system">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num-mark">i.</span>
+      <h2>Six loops. <em class="s">One engine.</em></h2>
+      <p class="prose dim">At the centre is what every supply chain is measured on: cost, speed and volume. Four reinforcing loops amplify harm. Two balancing loops are meant to stop it, but they are slow and partly blind. Press play for a guided walkthrough, or select any loop.</p>
+    </div>
+    <div class="mapgrid">
+      <div class="mapcard">
+        <div class="story-cap" id="storyCap" aria-live="polite"><span class="k" id="storyK"></span><span id="storyT"></span><div class="story-prog"><i id="storyP"></i></div></div>
+        <svg id="sysmap" viewBox="0 0 800 600" role="img" aria-label="Causal loop map: six feedback loops around a core of cost, speed and volume.">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#c8a24a"/></marker>
+            <radialGradient id="coreGlow"><stop offset="0" stop-color="#c8a24a" stop-opacity=".28"/><stop offset="1" stop-color="#c8a24a" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g id="edges"></g>
+          <g id="core">
+            <circle cx="400" cy="300" r="125" fill="url(#coreGlow)"/>
+            <circle cx="400" cy="300" r="70" fill="#111418"/>
+            <circle cx="400" cy="300" r="76" fill="none" stroke="url(#goldG)" stroke-width="2"/>
+            <text class="core-txt" x="400" y="292" text-anchor="middle">COST · SPEED</text>
+            <text class="core-txt" x="400" y="311" text-anchor="middle">· VOLUME</text>
+            <text class="core-sub" x="400" y="333" text-anchor="middle">what gets measured</text>
+          </g>
+          <g id="nodes"></g>
+        </svg>
+        <div class="legend">
+          <span><i style="background:var(--harm)"></i>Reinforcing (R): amplifies harm</span>
+          <span><i style="background:var(--gold)"></i>Balancing (B): meant to stop it</span>
+          <span>Glow = how hard the loop is running</span>
+        </div>
+        <div class="story-bar">
+          <button class="btn gold" id="play">▶ Play the story</button>
+          <button class="btn ghost" id="next" disabled>Next →</button>
+          <button class="btn ghost" id="stop" disabled>Stop</button>
+          <span class="src" id="storyStep"></span>
+        </div>
+      </div>
+      <aside class="panel" id="detail" aria-live="polite"></aside>
+    </div>
+
+    <div class="sim">
+      <div class="panel">
+        <span class="num-mark">ii.</span>
+        <h3>Pull the levers.</h3>
+        <p class="dim" style="font-size:15.5px">Each slider is a leverage point. Move one and watch the map: loops slow down, their glow shrinks, and the effect carries through the connections to loops you didn't touch.</p>
+        <div class="levers" id="levers"></div>
+        <div class="btnrow">
+          <button class="btn" id="allOn">Pull every lever</button>
+          <button class="btn ghost" id="infoOnly">Fix information only</button>
+          <button class="btn ghost" id="reset">Back to today</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">System harm index</div>
+        <div class="harmnum" id="harm">100</div>
+        <p class="dim" style="font-size:15px" id="harmtxt">Today's system, running as designed.</p>
+        <div class="bars" id="bars"></div>
+        <p class="caveat">An illustrative model of how the loops interact, not a forecast. Today's system is set to 100. The weights encode the argument: honest reporting strengthens regulation, fairer contracts ease fatigue, slower automation targets reduce rebound.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- R1 -->
+<section id="r1" class="alt">
+  <div class="wrap chapter">
+    <div class="txt">
+      <div class="bigcode" aria-hidden="true">R1</div>
+      <span class="pill r">Reinforcing loop</span>
+      <h2>Fatigue <em class="s">versus</em> productivity</h2>
+      <ol class="cycle">
+        <li>Targets rise, so the fastest lever is human effort: longer shifts, fewer breaks.</li>
+        <li>Output goes up for a while.</li>
+        <li>Fatigue builds, and with it errors, injuries and delay.</li>
+        <li>Delay creates pressure to push harder.</li>
+        <li>…and the loop runs again, faster.</li>
+      </ol>
+      <p>Most of this harm never appears in an incident log. It arrives years later as stroke and heart disease, away from the site, and the organisation that set the pace rarely carries the cost.</p>
+      <div class="lever-note"><b>Leverage point</b>Sustainable work pacing: set rates and schedules around human capacity, and track hours as a leading indicator. The WHO and ILO call for caps on working time and bans on mandatory overtime.<sup class="cite"><a href="#s1">1</a></sup></div>
+    </div>
+    <div class="right">
+      <div class="inst">
+        <label for="hours" class="eyebrow">Drag: hours worked per week</label>
+        <div class="readout"><span class="big" id="hoursOut">48</span><span class="unit">hours / week</span></div>
+        <input type="range" id="hours" min="35" max="75" value="48">
+        <div class="gauge" aria-hidden="true"><div class="g-fill" id="gfill"></div><div class="g-mark" style="left:50%"></div><div class="g-tag" style="left:50%">55 h</div></div>
+        <div class="scale"><span>35 h</span><span>75 h</span></div>
+        <p id="hoursMsg" style="font-size:15.5px"></p>
+        <div><div class="src" style="margin-bottom:6px">Where the 745,000 deaths came from (2016)</div>
+          <div class="split"><div style="width:53.4%;background:var(--harm)">Stroke 398K</div><div style="width:46.6%;background:var(--ink)">Heart disease 347K</div></div></div>
+      </div>
+      <div class="evidence"><h4>Evidence file</h4><ul>
+        <li>Long working hours led to <b>745,000</b> deaths from stroke and ischemic heart disease in 2016, a <b>29%</b> increase since 2000.<sup class="cite"><a href="#s1">1</a></sup></li>
+        <li>From 2000 to 2016, heart-disease deaths from long hours rose <b>42%</b> and stroke deaths <b>19%</b>.<sup class="cite"><a href="#s1">1</a></sup></li>
+        <li>Working 55+ hours a week is associated with an estimated <b>35%</b> higher risk of stroke and <b>17%</b> higher risk of dying from heart disease, compared with 35–40 hours.<sup class="cite"><a href="#s1">1</a></sup></li>
+        <li>The analysis pooled 37 studies on heart disease (768,000+ participants) and 22 on stroke (839,000+), with surveys from 154 countries.<sup class="cite"><a href="#s1">1</a></sup></li>
+        <li>Long working hours account for about one-third of the estimated work-related burden of disease, the largest single occupational risk factor.<sup class="cite"><a href="#s1">1</a></sup></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- R2 -->
+<section id="r2">
+  <div class="wrap chapter">
+    <div class="txt">
+      <div class="bigcode" aria-hidden="true">R2</div>
+      <span class="pill r">Reinforcing loop</span>
+      <h2>Procurement <em class="s">pressure</em></h2>
+      <ol class="cycle">
+        <li>Procurement is rewarded for cutting cost, so the lowest bid wins.</li>
+        <li>The winner recovers margin from training, supervision, equipment and time.</li>
+        <li>The most hazardous tasks move down the chain to the least protected workers.</li>
+        <li>The client's own safety record improves as risk leaves its books.</li>
+        <li>…which rewards outsourcing more.</li>
+      </ol>
+      <p>BLS defines a contractor as a worker employed by one firm but working at the direction of another firm that controls the site.<sup class="cite"><a href="#s6">6</a></sup> The gap between who employs and who controls is where accountability slips.</p>
+      <div class="lever-note"><b>Leverage point</b>Contract structure: make safety performance and realistic schedules part of what wins a bid, and make the controlling firm share accountability for contractor outcomes.</div>
+    </div>
+    <div class="right">
+      <div class="inst">
+        <div class="eyebrow">US workplace deaths of contract workers</div>
+        <svg class="chart" id="contractChart" viewBox="0 0 520 250" role="img" aria-label="Contract worker deaths rose from 542 in 2011 to 802 in 2014"></svg>
+        <div class="readout"><span class="big" id="ctrOut" style="color:var(--harm)">+48%</span><span class="unit">more contract-worker deaths in 2014 than in 2011, the first year BLS tracked them</span></div>
+        <div><div class="src" style="margin-bottom:8px">2014: each square is 0.5% of all US workplace deaths. Red = contract workers.</div><div class="cells" id="cellsB"></div></div>
+        <div class="btnrow"><button class="btn ghost" id="replay2">Replay</button></div>
+      </div>
+      <div class="evidence"><h4>Evidence file</h4><ul>
+        <li>BLS began identifying contract workers in its fatality census in 2011: <b>542</b> of 4,693 deaths, or <b>12%</b>.<sup class="cite"><a href="#s5">5</a></sup></li>
+        <li>The share rose to <b>15%</b> in 2012 and about <b>16–17%</b> in 2013.<sup class="cite"><a href="#s6">6</a></sup><sup class="cite"><a href="#s4">4</a></sup></li>
+        <li>In 2014, <b>802</b> contract or temporary workers died on the job, <b>16.7%</b> of the total.<sup class="cite"><a href="#s7">7</a></sup></li>
+        <li>Falls to a lower level (31%) and being struck by objects or equipment (39%) caused most contract-worker deaths in 2013.<sup class="cite"><a href="#s6">6</a></sup></li>
+        <li>In 2013, 35% of contract workers who died in construction were contracted to a different industry.<sup class="cite"><a href="#s4">4</a></sup></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- R3 -->
+<section id="r3" class="alt">
+  <div class="wrap chapter">
+    <div class="txt">
+      <div class="bigcode" aria-hidden="true">R3</div>
+      <span class="pill r">Reinforcing loop</span>
+      <h2>Automation <em class="s">trade-offs</em></h2>
+      <ol class="cycle">
+        <li>Automation is introduced to cut cost and remove hazardous tasks.</li>
+        <li>Machines raise the pace, and targets for people rise to match.</li>
+        <li>New hazards appear: repetitive strain, collisions, cognitive load.</li>
+        <li>They land in new injury categories, so the "safety gain" story survives.</li>
+        <li>…and more automation is justified.</li>
+      </ol>
+      <p>Robotic drive units were meant to save warehouse workers from walking miles a shift. Instead, pick-rate expectations rose about fourfold, and the injuries followed the pace.<sup class="cite"><a href="#s9">9</a></sup></p>
+      <div class="lever-note"><b>Leverage point</b>Learning budget: reinvest part of every automation gain into studying how the work actually changed, and set targets from what is found.</div>
+    </div>
+    <div class="right">
+      <div class="inst">
+        <div class="btnrow" role="group" aria-label="Choose year"><button class="btn ghost on" data-yr="2019">2019</button><button class="btn ghost" data-yr="2021">2021</button></div>
+        <div class="cmp">
+          <div class="row"><span>Robotic sites</span><div class="track"><div class="fill" id="fRobot" style="background:var(--harm);width:0"></div></div><span class="mono" id="vRobot">7.9</span></div>
+          <div class="row"><span>Non-robotic</span><div class="track"><div class="fill" id="fHuman" style="background:var(--ink);width:0"></div></div><span class="mono" id="vHuman">5.1</span></div>
+        </div>
+        <p class="src" id="yrNote"></p>
+        <label for="ws" class="eyebrow">Drag: size of the warehouse</label>
+        <input type="range" id="ws" min="100" max="5000" step="100" value="1000">
+        <div class="readout"><span class="big" id="extraOut" style="color:var(--harm)">28</span><span class="unit" id="extraTxt"></span></div>
+        <div class="picks"><div><h5>Items per hour before</h5><div class="cells small" id="pickA"></div></div><div><h5>Items per hour with robots</h5><div class="cells small" id="pickB"></div></div></div>
+      </div>
+      <div class="evidence"><h4>Evidence file</h4><ul>
+        <li>In 2019, Amazon sortable facilities with robots had <b>7.9</b> serious injuries per 100 workers, more than <b>54%</b> higher than non-robotic sites.<sup class="cite"><a href="#s8">8</a></sup></li>
+        <li>In 2021 the gap persisted: <b>7.3</b> vs. <b>5.7</b> per 100.<sup class="cite"><a href="#s10">10</a></sup></li>
+        <li>Workers at robotic centres were expected to pick about <b>400</b> items an hour, against a standard of about <b>100</b>.<sup class="cite"><a href="#s9">9</a></sup></li>
+        <li>After robots arrived at the Tracy, California centre, its serious-injury rate nearly quadrupled, reaching <b>11.3</b> per 100 workers in 2018.<sup class="cite"><a href="#s11">11</a></sup></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- B1 -->
+<section id="b1">
+  <div class="wrap chapter">
+    <div class="txt">
+      <div class="bigcode" aria-hidden="true">B1</div>
+      <span class="pill b">Balancing loop</span>
+      <h2>Regulatory <em class="s">delay</em></h2>
+      <ol class="cycle b">
+        <li>A hazard appears and harm accumulates.</li>
+        <li>Evidence builds, often slowly, because of B2.</li>
+        <li>Rulemaking begins, then stalls in review and challenge.</li>
+        <li>A rule takes effect decades later, with thin enforcement.</li>
+        <li>…by which time the system has moved on.</li>
+      </ol>
+      <p>Regulation is the system's brake. A brake applied this rarely, using incomplete information, cannot control a system this fast.</p>
+      <div class="lever-note"><b>Leverage point</b>Policy fast track: interim standards for emerging hazards, deadlines on review stages, and enforcement targeted by data rather than spread thin.</div>
+    </div>
+    <div class="right">
+      <div class="inst">
+        <div class="eyebrow">Years for federal OSHA to inspect every workplace once</div>
+        <svg class="chart" id="inspChart" viewBox="0 0 520 250" role="img" aria-label="Years to inspect every workplace once rose from 84 in 1992 to 191 in 2026"></svg>
+        <p class="tl-out" id="inspOut">Select a point to see that year's report.</p>
+      </div>
+      <div class="inst">
+        <div class="eyebrow">Case: silica dust, 1971 → 2016</div>
+        <div class="tl" id="silica"></div><p class="tl-out" id="silicaOut"></p>
+        <div class="eyebrow" style="margin-top:6px">Case: workplace heat, 2021 → ?</div>
+        <div class="tl" id="heat"></div><p class="tl-out" id="heatOut"></p>
+      </div>
+      <div class="evidence"><h4>Evidence file</h4><ul>
+        <li>Federal OSHA has only enough inspectors to visit each workplace once every <b>191</b> years: about 5 inspectors per million workers, the lowest in at least 45 years.<sup class="cite"><a href="#s2">2</a></sup></li>
+        <li>When the first Death on the Job report was published in 1992, the figure was <b>84</b> years.<sup class="cite"><a href="#s2">2</a></sup></li>
+        <li>NIOSH recommended halving the silica exposure limit in 1974. OSHA adopted that limit in 2016: <b>42 years</b> later.<sup class="cite"><a href="#s13">13</a></sup></li>
+        <li>A 90-day White House review of the silica rule took <b>921 days</b>.<sup class="cite"><a href="#s14">14</a></sup> OSHA estimated the final rule would save about <b>600</b> lives a year.<sup class="cite"><a href="#s15">15</a></sup></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- R4 -->
+<section id="r4" class="alt">
+  <div class="wrap chapter">
+    <div class="txt">
+      <div class="bigcode" aria-hidden="true">R4</div>
+      <span class="pill r">Reinforcing loop</span>
+      <h2>Environmental <em class="s">rebound</em></h2>
+      <ol class="cycle">
+        <li>Ships, trucks and warehouses get more efficient per unit.</li>
+        <li>Moving goods gets cheaper.</li>
+        <li>Cheaper movement means more of it.</li>
+        <li>Volume growth outruns efficiency, so total impact rises.</li>
+        <li>…while reports celebrate the per-unit gain.</li>
+      </ol>
+      <p>This is the Jevons Paradox. Intensity metrics almost always improve, so they dominate sustainability reporting. Absolute totals get much less attention.</p>
+      <div class="lever-note"><b>Leverage point</b>Green audit transparency: report absolute impact next to intensity, across the whole chain, and ask whether the total actually fell.</div>
+    </div>
+    <div class="right">
+      <div class="inst">
+        <div class="btnrow"><button class="btn gold" id="imoPreset">Load real shipping data · IMO 2012–2018</button></div>
+        <div class="lever"><label for="eff"><b>Efficiency gain per year</b><span id="effOut">3%</span></label><input type="range" id="eff" min="0" max="8" step="0.1" value="3"></div>
+        <div class="lever"><label for="vol"><b>Volume growth per year</b><span id="volOut">5%</span></label><input type="range" id="vol" min="0" max="10" step="0.1" value="5"></div>
+        <svg class="chart" id="rebound" viewBox="0 0 520 260" role="img" aria-label="Impact per unit, volume and total impact over time"></svg>
+        <div class="readout"><span class="big" id="totOut">+28%</span><span class="unit" id="totTxt"></span></div>
+        <p class="src" id="rbNote">Illustrative model. Today = 100.</p>
+      </div>
+      <div class="evidence"><h4>Evidence file</h4><ul>
+        <li>Total shipping GHG emissions rose from <b>977</b> to <b>1,076</b> million tonnes CO₂e between 2012 and 2018, a <b>9.6%</b> increase.<sup class="cite"><a href="#s16">16</a></sup></li>
+        <li>Over the same period, the carbon intensity of shipping operations improved by about <b>11%</b>, but activity growth outstripped the gains.<sup class="cite"><a href="#s17">17</a></sup></li>
+        <li>Shipping's share of global emissions rose from <b>2.76%</b> to <b>2.89%</b>.<sup class="cite"><a href="#s18">18</a></sup></li>
+        <li>Under business-as-usual scenarios, emissions could rise by up to <b>50%</b> by 2050 relative to 2018, despite further efficiency gains.<sup class="cite"><a href="#s19">19</a></sup></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- B2 -->
+<section id="b2">
+  <div class="wrap chapter">
+    <div class="txt">
+      <div class="bigcode" aria-hidden="true">B2</div>
+      <span class="pill b">Balancing loop</span>
+      <h2>Under&shy;<em class="s">reporting</em></h2>
+      <ol class="cycle b">
+        <li>Reporting has a personal cost: blame, lost bonuses, lost shifts.</li>
+        <li>Low incident counts are rewarded.</li>
+        <li>So incidents go unreported, and the numbers look good.</li>
+        <li>Good numbers reduce scrutiny from leaders, clients and regulators.</li>
+        <li>…and every other brake weakens.</li>
+      </ol>
+      <p>This is the loop that disables the others. If harm isn't reported, regulation can't respond, procurement can't price it and leadership can't see it.</p>
+      <div class="lever-note"><b>Leverage point</b>Honest, protected reporting: reward reports, protect reporters, measure reporting quality, and treat a sudden drop in numbers with curiosity rather than celebration.</div>
+    </div>
+    <div class="right">
+      <div class="inst">
+        <div class="btnrow"><button class="btn ghost" data-rep="32">Michigan study</button><button class="btn ghost" data-rep="67">Low national estimate</button><button class="btn ghost" data-rep="22">Agriculture</button></div>
+        <label for="rep" class="eyebrow">Drag: share of incidents the official count captures</label>
+        <input type="range" id="rep" min="10" max="100" value="32">
+        <svg class="chart" id="iceberg" viewBox="0 0 520 280" role="img" aria-label="Iceberg of captured and missed incidents"></svg>
+        <div class="readout"><span class="big" id="hidOut" style="color:var(--harm)">68</span><span class="unit" id="hidTxt"></span></div>
+        <p class="src" id="repNote"></p>
+      </div>
+      <div class="evidence"><h4>Evidence file</h4><ul>
+        <li>Modelling of the US Bureau of Labor Statistics survey estimated it missed between <b>33%</b> and <b>69%</b> of all nonfatal injuries.<sup class="cite"><a href="#s20">20</a></sup></li>
+        <li>In Michigan, researchers estimated <b>869,034</b> work injuries and illnesses a year (1999–2001), against a BLS estimate of <b>281,567</b>.<sup class="cite"><a href="#s21">21</a></sup> They attributed about <b>75%</b> of missed cases to employer underreporting.<sup class="cite"><a href="#s22">22</a></sup></li>
+        <li>For agriculture, the survey was estimated to miss <b>77.6%</b> of cases.<sup class="cite"><a href="#s23">23</a></sup></li>
+        <li>BLS's own review notes undercount estimates from 20% to 70%, and lists employee fear about reporting among the causes.<sup class="cite"><a href="#s24">24</a></sup></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE -->
+<section id="case" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num-mark">iii.</span>
+      <h2>One network. <em class="s">Three loops at once.</em></h2>
+      <p class="prose dim">The loops are easier to see together than apart. Published reporting on one large e-commerce warehouse network shows three of them running at the same time and feeding each other.</p>
+    </div>
+    <div class="casegrid">
+      <div class="card case"><span class="pill r">R3 · Automation</span><div class="k" style="color:var(--harm)">4×</div><h3>Robots raised the pace</h3><p>Pick-rate expectations at robotic centres rose to about 400 items an hour from a standard of about 100.<sup class="cite"><a href="#s9">9</a></sup> Robotic sites ran higher serious-injury rates in every year compared.<sup class="cite"><a href="#s8">8</a></sup><sup class="cite"><a href="#s10">10</a></sup></p></div>
+      <div class="card case"><span class="pill r">R1 · Fatigue</span><div class="k" style="color:var(--harm)">11.3</div><h3>The pace became injury</h3><p>At one California site, the serious-injury rate nearly quadrupled after robots arrived, reaching 11.3 per 100 workers in 2018.<sup class="cite"><a href="#s11">11</a></sup> The harm came from repetition and speed, not from the robots themselves.</p></div>
+      <div class="card case"><span class="pill b">B2 · Underreporting</span><div class="k" style="color:var(--gold-deep)">?</div><h3>The count was suppressed</h3><p>A physician who inspected facilities for OSHA found workers at some sites were discouraged from reporting injuries and from seeking outside medical care.<sup class="cite"><a href="#s9">9</a></sup> The brake was weakened at the source.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDS -->
+<section id="trends">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num-mark">iv.</span>
+      <h2>If nothing changes: <em class="s">2035.</em></h2>
+      <p class="prose dim">ZM extends three documented trends forward with a straight-line fit, to show where each loop is heading if the structure stays the same. These are extrapolations, not forecasts: they assume the past trend simply continues.</p>
+    </div>
+    <div class="inst">
+      <div class="tabs" role="tablist">
+        <button class="btn ghost on" data-tr="insp">B1 · Inspection cycle</button>
+        <button class="btn ghost" data-tr="hours">R1 · Long-hours deaths</button>
+        <button class="btn ghost" data-tr="ship">R4 · Shipping emissions</button>
+      </div>
+      <svg class="chart" id="trendChart" viewBox="0 0 900 340" role="img" aria-label="Trend extrapolation to 2035"></svg>
+      <div class="readout"><span class="big" id="trOut" style="color:var(--harm)">—</span><span class="unit" id="trTxt"></span></div>
+      <p class="src" id="trNote"></p>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section id="audit" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num-mark">v.</span>
+      <h2>The loop audit. <em class="s">Which loop runs your operation?</em></h2>
+      <p class="prose dim">Twelve statements, two per loop. Answer for your own organisation and see which loops are running hardest. It takes about two minutes. Nothing is stored or sent anywhere.</p>
+    </div>
+    <div class="audit">
+      <div class="panel">
+        <div class="progress"><i id="aProg"></i></div>
+        <div id="questions"></div>
+      </div>
+      <div class="sticky">
+        <div class="panel result" id="aResult">
+          <div class="eyebrow">Your loop profile</div>
+          <svg id="radar" viewBox="0 0 360 340" role="img" aria-label="Radar chart of loop scores"></svg>
+          <div id="aText"><p class="dim">Answer the statements to build your profile. Scores update as you go.</p></div>
+          <div class="btnrow"><button class="btn ghost" id="aCopy" disabled>Copy my results</button><button class="btn ghost" id="aReset">Clear</button></div>
+          <p class="caveat">Self-assessment for discussion only. It is not an audit, inspection, certification or compliance assessment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALC -->
+<section id="calc">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num-mark">vi.</span>
+      <h2>The hidden cost. <em class="s">What your dashboard can't see.</em></h2>
+      <p class="prose dim">Combine your own numbers with the published undercount research to estimate how much harm sits below the waterline. Inputs marked "example" are placeholders: replace them with your own figures.</p>
+    </div>
+    <div class="calc">
+      <div class="panel">
+        <div class="field"><label for="cWork">Workers (including contractors)</label><input type="number" id="cWork" value="500" min="1"></div>
+        <div class="field"><label for="cRate">Reported injuries per 100 workers per year</label><input type="number" id="cRate" value="3" min="0" step="0.1"><small>Example value. Use your own recordable rate.</small></div>
+        <div class="field"><label for="cCap">Share of real injuries that get reported</label>
+          <div class="btnrow"><button class="btn ghost" data-cap="32">32% · Michigan</button><button class="btn ghost on" data-cap="50">50% · midpoint</button><button class="btn ghost" data-cap="67">67% · low estimate</button></div>
+          <input type="range" id="cCap" min="20" max="100" value="50"><small id="cCapOut">50% reported. Research range: 31–67% captured.</small></div>
+        <div class="field"><label for="cCost">Average cost per injury ($)</label><input type="number" id="cCost" value="40000" min="0" step="1000"><small>Example value. Use your claims or finance data.</small></div>
+        <div class="field"><label for="cHrs">Typical weekly hours, busiest crews</label><input type="range" id="cHrs" min="35" max="75" value="50"><small id="cHrsOut">50 hours</small></div>
+      </div>
+      <div class="panel">
+        <div class="eyebrow">Below the waterline</div>
+        <div class="out-grid">
+          <div><div class="v" id="oRep">15</div><div class="l">injuries on your dashboard each year</div></div>
+          <div><div class="v" id="oReal" style="color:var(--harm)">30</div><div class="l">estimated real injuries each year</div></div>
+          <div><div class="v" id="oHid" style="color:var(--harm)">15</div><div class="l">hidden injuries each year</div></div>
+          <div><div class="v" id="oCost" style="color:var(--harm)">$600K</div><div class="l">hidden cost each year, at your cost per injury</div></div>
+        </div>
+        <p id="oHrsMsg" style="font-size:15px"></p>
+        <p id="oLoop" style="font-size:15px"></p>
+        <p class="caveat">An illustrative estimate that applies published undercount ranges to your inputs. It is not a prediction for any specific site and not a compliance assessment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LESSONS -->
+<section id="now" class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num-mark">vii.</span>
+      <h2>Mapping is <em class="s">half the work.</em></h2>
+      <p class="prose dim">Mapping the system from the outside is only half the picture. The other half is the programs, data and reporting that make these loops visible. How they are designed decides what anyone can see.</p>
+    </div>
+    <div class="three">
+      <div class="card"><span class="ic">01</span><h3>Data can expose blind spots or confirm them</h3><p>A system that only captures what's easy to count reproduces the blind spots exactly. Designing the data model is a safety and sustainability decision.</p></div>
+      <div class="card"><span class="ic">02</span><h3>Safety and sustainability are one system</h3><p>Procurement pressure, automation and weak reporting drive harm to people and the planet at the same time. Separate teams with separate metrics hide the connections.</p></div>
+      <div class="card"><span class="ic">03</span><h3>The leverage is in the questions</h3><p>Where is risk being transferred? Which numbers look suspiciously good? Is total impact actually falling, or only intensity? Build reporting around those questions.</p></div>
+    </div>
+    <p class="closing" style="margin-top:72px">Look for the loop, <em class="s foil">not just the incident.</em></p>
+  </div>
+</section>
+
+<!-- WORK WITH ZM -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="num-mark">viii.</span>
+      <h2>Work with ZM. <em class="s">Practical safety, backed by data.</em></h2>
+      <p class="prose dim">ZM Safety &amp; Risk is an independent advisory practice in Calgary, Alberta. We help organizations organize their safety and sustainability information, turn it into useful data, and build programs people will follow. On site in Alberta; remote across Canada and internationally.</p>
+    </div>
+    <div class="three">
+      <div class="card"><span class="pill g">Programs &amp; compliance support</span><h3>HSE administration and compliance support</h3><ul><li>HSE manuals, safe work procedures, hazard identification and control programs</li><li>Risk assessment documentation</li><li>Gap reviews against legislation and standards</li><li>Audit preparation</li></ul></div>
+      <div class="card"><span class="pill g">Data &amp; systems</span><h3>Safety and sustainability data</h3><ul><li>Power BI reporting and dashboards</li><li>Safety and sustainability data structuring, including absolute vs. intensity reporting</li><li>EHS software support, including Cority</li><li>Leading indicators built around the questions above</li></ul></div>
+      <div class="card"><span class="pill g">Training</span><h3>Training and e-learning</h3><ul><li>Workplace inspection training</li><li>Orientations</li><li>SCORM-compatible online learning modules</li></ul></div>
+    </div>
+
+    <div style="margin-top:56px;display:grid;gap:18px">
+      <div class="eyebrow">What we do not do</div>
+      <p class="prose dim" style="font-size:15.5px">ZM Safety &amp; Risk provides advisory, documentation, training and data services only. We help clients build and improve their programs. We do not approve, certify or take responsibility for their compliance.</p>
+      <div class="dont">
+        <div><b>No inspection sign-off or certification</b>We do not sign off, certify or approve inspections, equipment, sites, permits or programs. Observations during a site visit are advisory and do not replace a formal inspection by a qualified or legally designated person.</div>
+        <div><b>Not your designated safety representative</b>We do not act as an OHS representative, health and safety committee member, prime contractor or legally designated competent person.</div>
+        <div><b>No engineering or legal advice</b>We are not a professional engineering or law firm. Nothing we provide is an engineering opinion, a stamped design or legal advice.</div>
+        <div><b>No control of the worksite</b>We do not supervise workers, direct work, or control any worksite, equipment or process.</div>
+      </div>
+      <p class="prose dim" style="font-size:15px">Clients remain responsible for their own compliance with the Alberta Occupational Health and Safety Act and all other laws that apply to them, and for every decision to adopt, change or implement our recommendations.</p>
+    </div>
+
+    <div class="contact" style="margin-top:56px">
+      <svg viewBox="0 0 400 400" aria-hidden="true"><use href="#seal"/></svg>
+      <div style="display:grid;gap:12px">
+        <div class="eyebrow" style="color:#e9cf86">Start a conversation</div>
+        <h3>See which loop is running in your operation.</h3>
+        <p>Calgary-based, serving clients across Canada and internationally.</p>
+        <p><a class="mail" href="mailto:ohszain1@gmail.com">ohszain1@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section id="method" class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="num-mark">ix.</span><h2>Method <em class="s">and limits.</em></h2></div>
+    <div class="method">
+      <div class="card"><h3>Approach</h3><ul>
+        <li>Causal loop analysis from system dynamics: reinforcing loops (R) amplify change, balancing loops (B) resist it.</li>
+        <li>Each loop is matched against published evidence from international bodies, regulators, government statistics, peer-reviewed research and investigative reporting. Every figure links to its source.</li>
+        <li>The system harm index, rebound chart, loop audit and hidden-cost estimate are illustrative tools built on the cited figures where possible.</li>
+        <li>The 2035 trendlines are ZM's straight-line extrapolations of the cited data points.</li>
+      </ul></div>
+      <div class="card"><h3>Limits</h3><ul>
+        <li>The loops are a lens, not proof of causation. The evidence is consistent with each loop, and other explanations exist for many patterns.</li>
+        <li>Figures come from different countries, years and methods. Most enforcement and injury data is from the United States, where the longest public series exist.</li>
+        <li>Warehouse figures come from one company's internal records as analysed by journalists and a labour coalition, and the company has disputed some characterisations.</li>
+        <li>The places with the least data, such as informal and offshore work, are often where harm is greatest. That gap is part of loop B2.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<footer id="sources">
+  <div class="wrap">
+    <div class="eyebrow">Sources</div>
+    <ol>
+      <li id="s1">World Health Organization &amp; International Labour Organization (2021). <em>Long working hours increasing deaths from heart disease and stroke.</em> Joint news release, 17 May 2021, reporting estimates published in <em>Environment International</em>. <a href="https://www.who.int/news/item/17-05-2021-long-working-hours-increasing-deaths-from-heart-disease-and-stroke-who-ilo">who.int</a></li>
+      <li id="s2">AFL-CIO (2026). <em>Death on the Job: The Toll of Neglect</em>, 35th edition. <a href="https://aflcio.org/press/releases/55-years-after-osha-opened-its-doors-trump-administration-attacks-workers-rights-and">aflcio.org</a> · <a href="https://aflcio.org/2026/4/27/24-things-you-need-know-2026-death-job-report">summary</a></li>
+      <li id="s3">AFL-CIO, <em>Death on the Job</em>, earlier editions as reported: 2003 (80 years) <a href="https://www.bmwe.org/news/2003/04242003_mwd.htm">bmwe.org</a>; 2012 (131) <a href="https://www.dailykos.com/stories/2012/5/2/1088185/-An-average-of-13-workers-killed-on-the-job-each-day-in-2010">dailykos.com</a>; 2014 (139) <a href="https://webarchive.library.unt.edu/dentonfracking/20141022171525/http://www.aflcio.org/Issues/Job-Safety/Death-on-the-Job-Report">UNT web archive</a>; 2018 (158) <a href="https://aflcio.org/node/4044">aflcio.org</a>; 2023 (190) <a href="https://jordanbarab.com/confinedspace/2023/04/26/afl-cio-issues-death-on-the-job-report/">Confined Space</a>; 2024 (186) <a href="https://www.afge.org/link/11513f06282a47bda4882454dfcb0fa2.aspx">AFGE</a>; 2025 (185) US House testimony <a href="https://democrats-edworkforce.house.gov/download/07/16/2025/witness-testimony-3&amp;download=1">house.gov</a>.</li>
+      <li id="s4">AFL-CIO (2015). <em>Death on the Job</em>, 24th edition (2013 data). <a href="https://www.elcosh.org/document/3984/d001381/Death%2Bon%2Bthe%2BJob%253A%2BThe%2BToll%2Bof%2BNeglect.html">elcosh.org</a></li>
+      <li id="s5">Occupational Health &amp; Safety (2013). <em>Contractor fatality data highlight governments' role</em>, BLS CFOI 2011. <a href="https://ohsonline.com/articles/2013/04/30/contractor-fatality-data-highlight-governments-role.aspx">ohsonline.com</a></li>
+      <li id="s6">EHS Daily Advisor. <em>A death in the workplace: which workers are at the highest risk?</em> (BLS CFOI 2012–2013). <a href="https://ehsdailyadvisor.com/?p=3963">ehsdailyadvisor.com</a></li>
+      <li id="s7">Sandronsky, S. (2016). <em>Go to work and die in the US?</em> The Progressive Populist, reporting National COSH analysis of BLS 2014 data. <a href="https://populist.com/22.10.sandronsky.html">populist.com</a></li>
+      <li id="s8">The Register (2021), reporting Strategic Organizing Center analysis of Amazon 2019 injury records. <a href="https://www.theregister.com/2021/06/02/amazon_warehouse_workers/">theregister.com</a></li>
+      <li id="s9">CNBC (2020). <em>Amazon reportedly downplayed rising injury rates at its warehouses</em>, summarising Reveal. <a href="https://www.cnbc.com/2020/09/29/amazon-reportedly-downplayed-rising-injury-rates-at-its-warehouses.html">cnbc.com</a></li>
+      <li id="s10">Occupational Health &amp; Safety (2022). <em>Report shows injury rate at Amazon warehouses is up from 2020.</em> <a href="https://ohsonline.com/articles/2022/04/13/report-shows-injury-rate.aspx">ohsonline.com</a></li>
+      <li id="s11">Reuters via Gulf News (2019). <em>Report shows high injury rate at Amazon warehouses</em>, summarising Reveal. <a href="https://gulfnews.com/world/americas/report-shows-high-injury-rate-at-amazon-warehouses-1.1574785368244">gulfnews.com</a></li>
+      <li id="s12">US Bureau of Labor Statistics (2024). <em>National Census of Fatal Occupational Injuries in 2023.</em> <a href="https://www.bls.gov/news.release/archives/cfoi_12192024.htm">bls.gov</a></li>
+      <li id="s13">Center for Public Integrity (2016). <em>Forty-two years later, OSHA OKs rule protecting workers from silica.</em> <a href="https://archive.publicintegrity.org/2016/03/24/19486/forty-two-years-later-osha-oks-rule-protecting-workers-silica">publicintegrity.org</a></li>
+      <li id="s14">Public Citizen (2016). <em>Final silica rule after decades of delay.</em> <a href="https://www.citizen.org/?p=20577">citizen.org</a></li>
+      <li id="s15">Insurance Journal / Reuters (2016). OSHA final silica rule. <a href="https://www.insurancejournal.com/news/national/2016/03/25/403039.htm">insurancejournal.com</a></li>
+      <li id="s16">DieselNet (2020). <em>IMO releases final report of the Fourth GHG Study.</em> <a href="https://dieselnet.com/news/2020/08imo.php">dieselnet.com</a></li>
+      <li id="s17">Green Marine (2020). <em>Fourth IMO Greenhouse Gas Study.</em> <a href="https://green-marine.org/stayinformed/news/fourth-imo-greenhouse-gas-study/">green-marine.org</a></li>
+      <li id="s18">International Maritime Organization. <em>Fourth Greenhouse Gas Study 2020</em>, key findings. <a href="https://imo.org/en/ourwork/Environment/Pages/Fourth-IMO-Greenhouse-Gas-Study-2020.aspx">imo.org</a></li>
+      <li id="s19">CE Delft (2020). <em>Fourth IMO Greenhouse Gas Study.</em> <a href="https://cedelft.eu/publications/fourth-imo-greenhouse-gas-study/">cedelft.eu</a></li>
+      <li id="s20">Leigh, J. P., et al. (2004). <em>An estimate of the U.S. government's undercount of nonfatal occupational injuries.</em> <a href="https://stacks.cdc.gov/view/cdc/190309">stacks.cdc.gov</a></li>
+      <li id="s21">International Association of Machinists, reporting Rosenman et al., <em>Journal of Occupational and Environmental Medicine</em> (Michigan, 1999–2001). <a href="https://www.goiam.org/?p=25744">goiam.org</a></li>
+      <li id="s22">International Association of Machinists. <em>Government statistics undercount the number of illnesses and injuries.</em> <a href="https://www.goiam.org/news/departments/government-statistics-undercount-the-number-of-illnesses-and-injuries/">goiam.org</a></li>
+      <li id="s23">Leigh, J. P., Du, J., &amp; McCurdy, S. A. (2014). <em>An estimate of the U.S. government's undercount of nonfatal occupational injuries and illnesses in agriculture.</em> <a href="https://stacks.cdc.gov/view/cdc/199877/cdc_199877_DS1.pdf">stacks.cdc.gov</a></li>
+      <li id="s24">US Bureau of Labor Statistics (2014). <em>Examining the completeness of occupational injury and illness data.</em> Monthly Labor Review. <a href="https://www.bls.gov/opub/mlr/2014/article/pdf/examining-the-completeness-of-occupational-injury-and-illness-data-an-update-on-current-research.pdf">bls.gov</a></li>
+      <li id="s25">OSHA. <em>Heat Injury and Illness Prevention rulemaking</em>, status page. <a href="https://osha.prod.pace.dol.gov/heat-exposure/rulemaking">osha.gov</a> · AIHA (2024), <em>OSHA releases proposed heat standard.</em> <a href="https://www.aiha.org/news/240711-osha-releases-proposed-heat-standard">aiha.org</a></li>
+    </ol>
+
+    <div class="legal">
+      <svg viewBox="0 0 400 400" aria-hidden="true"><use href="#seal"/></svg>
+      <div style="display:grid;gap:10px">
+        <p><b>© 2026 ZM Safety &amp; Risk. All rights reserved.</b> <em>Necessary Risk: How the Global Supply Chain Depends on Controlled Danger to Survive.</em> Research and analysis by Zain Mustafa, Founder &amp; Principal Consultant, ZM Safety &amp; Risk, a sole proprietorship registered in Alberta, Canada. This publication, including its text, analysis, loop framework, interactive tools, visual design and the ZM seal, is the property of ZM Safety &amp; Risk. No part of it may be reproduced, distributed, adapted or republished without prior written permission, except for brief quotation with clear attribution to ZM Safety &amp; Risk and a link to this page. Third-party data remains the property of its original publishers and is cited in the sources above.</p>
+        <p>Prepared by ZM Safety &amp; Risk as an advisory document. It is not a certification, inspection sign-off, engineering opinion, legal advice or regulatory approval. Readers remain responsible for their own compliance and for how this material is used.</p>
+      </div>
+    </div>
+    <div class="docfoot"><span>ZM Safety &amp; Risk · Advisory Services · Calgary, Alberta</span><span>ZMSR-RS-01 · Safer by design. Smarter by data.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,parent,txt){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(txt!=null)e.textContent=txt;if(parent)parent.appendChild(e);return e;}
+const COL={harm:'#b23a2e',gold:'#c8a24a',goldD:'#8a6a1f',sage:'#2f6b5a',ink:'#111418',graph:'#55585c',stone:'#e3e1da',linen:'#f7f5ef'};
+
+/* HERO LANES: gold freight on white, crimson incidents */
+const cv=$('#lanes'),ctx=cv.getContext('2d');let W=0,H=0,parts=[],sparks=[];
+function size(){const r=cv.getBoundingClientRect(),d=window.devicePixelRatio||1;W=r.width;H=r.height;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);}
+function laneY(l,x){return H*(0.14+l*0.1)+Math.sin(x/160+l*1.7)*20;}
+function seed(){parts=[];for(let i=0;i<150;i++)parts.push({l:Math.floor(Math.random()*9),x:Math.random()*W,v:.3+Math.random()*1,s:1+Math.random()*1.6});}
+function frame(){ctx.clearRect(0,0,W,H);
+  for(let l=0;l<9;l++){ctx.beginPath();for(let x=0;x<=W;x+=12){const y=laneY(l,x);x?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.strokeStyle='rgba(200,162,74,.13)';ctx.lineWidth=1;ctx.stroke();}
+  for(const p of parts){if(!reduce){p.x+=p.v;if(p.x>W+10)p.x=-10;}const y=laneY(p.l,p.x);ctx.fillStyle='rgba(176,138,52,'+(.3+p.s*.2)+')';ctx.fillRect(p.x,y-p.s/2,p.s*3.4,p.s);if(!reduce&&Math.random()<0.0008)sparks.push({x:p.x,y,a:.9,r:2});}
+  for(let i=sparks.length-1;i>=0;i--){const s=sparks[i];ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.strokeStyle='rgba(178,58,46,'+s.a+')';ctx.lineWidth=1.3;ctx.stroke();ctx.fillStyle='rgba(178,58,46,'+s.a+')';ctx.beginPath();ctx.arc(s.x,s.y,1.8,0,Math.PI*2);ctx.fill();if(!reduce){s.r+=.4;s.a-=.011;if(s.a<=0)sparks.splice(i,1);}}
+  if(!reduce)requestAnimationFrame(frame);}
+size();seed();if(reduce){for(let i=0;i<5;i++){const p=parts[i*25];sparks.push({x:p.x,y:laneY(p.l,p.x),a:.6,r:6});}}frame();
+window.addEventListener('resize',()=>{size();seed();if(reduce)frame();});
+
+const t0=Date.now();function since(){$('#since').textContent=((Date.now()-t0)/60000/99).toFixed(3);}since();setInterval(since,1000);
+if(!reduce){$$('[data-count]').forEach(n=>{const target=+n.dataset.count,suf=n.dataset.suf,st=performance.now();(function tick(t){const k=Math.min(1,(t-st)/1500),e=1-Math.pow(1-k,3);n.innerHTML=Math.round(target*e)+'<small>'+suf+'</small>';if(k<1)requestAnimationFrame(tick);})(st);});}
+$$('.stat').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.go).scrollIntoView({behavior:reduce?'auto':'smooth'})));
+const navLinks=$$('nav.loops a');
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)navLinks.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));});},{rootMargin:'-40% 0px -55% 0px'});['system','r1','r2','r3','b1','r4','b2','case','trends','audit','calc','work','sources'].forEach(id=>{const s=document.getElementById(id);if(s)io.observe(s);});}
+
+/* LOOPS + MAP */
+const LOOPS={
+ r2:{code:'R2',name:'PROCUREMENT',title:'Procurement pressure',type:'r',x:400,y:82,how:'Cost targets push work to the lowest bidder. Margin is recovered from training, supervision and time, so risk moves down the chain with the work.',ev:'Contract workers went from 12% of US workplace deaths in 2011 to 16.7% in 2014.',lev:'Contract structure',levTxt:'Reward safe, realistic bids. Share accountability for contractor outcomes.'},
+ r1:{code:'R1',name:'FATIGUE',title:'Fatigue vs. productivity',type:'r',x:612,y:190,how:'Output pressure drives longer hours. Fatigue drives errors and delays, which drive more pressure.',ev:'745,000 deaths in 2016 linked to 55+ hour weeks, up 29% since 2000 (WHO/ILO).',lev:'Sustainable work pacing',levTxt:'Design schedules around human capacity. Track hours as a leading indicator.'},
+ b2:{code:'B2',name:'UNDERREPORTING',title:'Underreporting',type:'b',x:612,y:410,how:'Reporting has a personal cost and low counts are rewarded, so harm goes unreported. Good numbers reduce scrutiny.',ev:'The official US injury survey may miss 33% to 69% of nonfatal injuries.',lev:'Honest, protected reporting',levTxt:'Reward reports, protect reporters, measure reporting quality.'},
+ b1:{code:'B1',name:'REGULATORY DELAY',title:'Regulatory delay',type:'b',x:400,y:518,how:'Rules arrive decades after hazards are identified, and enforcement is spread thin. The brake is always behind the system.',ev:'Silica limit: recommended 1974, adopted 2016. Inspection cycle: 191 years.',lev:'Policy fast track',levTxt:'Interim standards for emerging hazards. Data-targeted enforcement.'},
+ r4:{code:'R4',name:'ENV. REBOUND',title:'Environmental rebound',type:'r',x:188,y:410,how:'Efficiency lowers cost per unit, which drives more volume. Growth swallows the gains, so total impact keeps rising.',ev:'Shipping intensity improved ~11% (2012–18) while total emissions rose 9.6% (IMO).',lev:'Green audit transparency',levTxt:'Report absolute impact next to intensity, across the whole chain.'},
+ r3:{code:'R3',name:'AUTOMATION',title:'Automation trade-offs',type:'r',x:188,y:190,how:'Automation removes some hazards but raises the pace for everyone around it. New hazards appear in new categories.',ev:'Robotic Amazon sites: 7.9 serious injuries per 100 vs ~5.1 at non-robotic sites (2019).',lev:'Learning budget',levTxt:'Reinvest part of every automation gain into understanding new risks.'}
+};
+const ORDER=['r2','r1','b2','b1','r4','r3'],C={x:400,y:300};
+const EDGES=[{f:'core',t:'r2',lbl:'cut cost'},{f:'r2',t:'r1',lbl:'longer hours'},{f:'r1',t:'b2',lbl:'no time to report'},{f:'b2',t:'b1',lbl:'no evidence'},{f:'b1',t:'core',lbl:'left unchecked'},{f:'core',t:'r3',lbl:'automate'},{f:'r3',t:'r4',lbl:'more throughput'},{f:'r4',t:'core',lbl:'cheaper volume'},{f:'r1',t:'core',lbl:'missed targets'}];
+const pt=k=>k==='core'?C:LOOPS[k];const edgeEls=[];
+EDGES.forEach(e=>{const a=pt(e.f),b=pt(e.t),rA=e.f==='core'?80:44,rB=e.t==='core'?84:48;const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy),ux=dx/len,uy=dy/len;const sx=a.x+ux*rA,sy=a.y+uy*rA,ex=b.x-ux*rB,ey=b.y-uy*rB;const mx=(sx+ex)/2,my=(sy+ey)/2,bend=e.f==='core'||e.t==='core'?22:-38;const cx=mx-uy*bend,cy=my+ux*bend,d=`M${sx},${sy} Q${cx},${cy} ${ex},${ey}`;
+ const base=el('path',{d,class:'edge'},$('#edges'));const p=el('path',{d,class:'edge flow','marker-end':'url(#arrow)'},$('#edges'));const t=el('text',{x:(sx+2*cx+ex)/4,y:(sy+2*cy+ey)/4-6,'text-anchor':'middle',class:'edge-lbl'},$('#edges'),e.lbl);edgeEls.push({e,p,t,base});});
+const nodeEls={};
+ORDER.forEach(k=>{const L=LOOPS[k];const g=el('g',{class:'node'+(L.type==='b'?' balancing':''),tabindex:'0',role:'button','aria-label':L.title+' loop'},$('#nodes'));const halo=el('circle',{cx:L.x,cy:L.y,r:60,class:'halo',style:L.type==='b'?'fill:#c8a24a':''},g);el('circle',{cx:L.x,cy:L.y,r:42,class:'disc'},g);el('text',{x:L.x,y:L.y+4,'text-anchor':'middle',class:'code'},g,L.code);el('text',{x:L.x,y:L.y+20,'text-anchor':'middle',class:'name'},g,L.name);g.addEventListener('click',()=>{stopStory();select(k);});g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();stopStory();select(k);}});nodeEls[k]={g,halo};});
+function select(k){const L=LOOPS[k];Object.values(nodeEls).forEach(n=>n.g.classList.remove('active'));nodeEls[k].g.classList.add('active');
+ $('#detail').innerHTML=`<span class="pill ${L.type}">${L.code} · ${L.type==='r'?'Reinforcing':'Balancing'}</span><h3>${L.title}</h3><dl><div><dt>How it works</dt><dd>${L.how}</dd></div><div><dt>Headline evidence</dt><dd>${L.ev}</dd></div><div><dt>Leverage point · ${L.lev}</dt><dd>${L.levTxt}</dd></div></dl><button class="btn ghost" style="justify-self:start" id="jump">Open the evidence file ↓</button>`;
+ $('#jump').addEventListener('click',()=>document.getElementById(k).scrollIntoView({behavior:reduce?'auto':'smooth'}));}
+select('r2');
+function focusOn(keys){const on=new Set(keys);Object.entries(nodeEls).forEach(([k,n])=>n.g.classList.toggle('dimmed',keys.length&&!on.has(k)));edgeEls.forEach(({e,p,t})=>{const hit=!keys.length||on.has(e.f)||on.has(e.t);p.classList.toggle('dimmed',!hit);t.style.opacity=hit?1:.15;});}
+
+/* STORY MODE */
+const STORY=[
+ {k:null,label:'THE ENGINE',t:'Every supply chain is measured on cost, speed and volume. Six loops grow out of that core. Four amplify harm. Two are meant to stop it.'},
+ {k:'r2',label:'R2 · PROCUREMENT',t:'It starts with price. The lowest bid wins, and the most hazardous work moves down the chain. Contract workers went from 1 in 8 US workplace deaths to 1 in 6 in three years.'},
+ {k:'r1',label:'R1 · FATIGUE',t:'Thin margins are recovered in hours. Long weeks were linked to 745,000 deaths in 2016, and most never appear in an incident log.'},
+ {k:'b2',label:'B2 · UNDERREPORTING',t:'Tired, pressured crews don’t stop to report. Studies estimate the official US count misses a third to two-thirds of injuries.'},
+ {k:'b1',label:'B1 · REGULATORY DELAY',t:'With no evidence, the brake can’t engage. The silica limit took 42 years. Today’s inspection cycle: once every 191 years.'},
+ {k:'r3',label:'R3 · AUTOMATION',t:'Meanwhile the core automates. Robotic sites raised pick targets about fourfold and ran injury rates more than 54% higher.'},
+ {k:'r4',label:'R4 · REBOUND',t:'Cheaper throughput means more volume. Shipping got about 11% more efficient per unit, and its total emissions still rose 9.6%.'},
+ {k:'all',label:'THE SYSTEM',t:'Accelerators everywhere, brakes that are slow and blind. The system is stable because harm is distributed, hidden and delayed. Change the structure, and the behaviour changes.'}
+];
+let sIdx=-1,sTimer=null,sStart=0;const DUR=reduce?9000:7000;
+function showStep(i){sIdx=i;const s=STORY[i];$('#storyCap').classList.add('show');$('#storyK').textContent=s.label;$('#storyT').textContent=s.t;$('#storyStep').textContent=(i+1)+' / '+STORY.length;
+ if(s.k&&s.k!=='all'){select(s.k);const conn=[s.k];EDGES.forEach(e=>{if(e.f===s.k)conn.push(e.t);if(e.t===s.k)conn.push(e.f);});focusOn(conn);}else{focusOn([]);Object.values(nodeEls).forEach(n=>n.g.classList.remove('active'));}
+ sStart=performance.now();clearTimeout(sTimer);sTimer=setTimeout(()=>{i+1<STORY.length?showStep(i+1):stopStory();},DUR);progress();}
+function progress(){if(sIdx<0)return;const k=Math.min(1,(performance.now()-sStart)/DUR);$('#storyP').style.width=(k*100)+'%';if(k<1)requestAnimationFrame(progress);}
+function stopStory(){clearTimeout(sTimer);sIdx=-1;$('#storyCap').classList.remove('show');focusOn([]);$('#next').disabled=true;$('#stop').disabled=true;$('#play').textContent='▶ Play the story';$('#storyStep').textContent='';}
+$('#play').addEventListener('click',()=>{$('.mapcard').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});$('#next').disabled=false;$('#stop').disabled=false;$('#play').textContent='↺ Restart';showStep(0);});
+$('#next').addEventListener('click',()=>{if(sIdx>=0)sIdx+1<STORY.length?showStep(sIdx+1):stopStory();});
+$('#stop').addEventListener('click',stopStory);
+
+/* SIMULATOR */
+const LEVERS=[{k:'r2',name:'Contract structure'},{k:'r1',name:'Sustainable work pacing'},{k:'r3',name:'Learning budget'},{k:'b1',name:'Policy fast track'},{k:'r4',name:'Green audit transparency'},{k:'b2',name:'Honest, protected reporting'}];const lv={};
+LEVERS.forEach(l=>{lv[l.k]=0;const d=document.createElement('div');d.className='lever';d.innerHTML=`<label for="lv-${l.k}"><b>${l.name} <span class="mono" style="color:var(--graphite)">${LOOPS[l.k].code}</span></b><span id="lvo-${l.k}">0%</span></label><input type="range" id="lv-${l.k}" min="0" max="100" value="0">`;$('#levers').appendChild(d);d.querySelector('input').addEventListener('input',ev=>{lv[l.k]=+ev.target.value;$('#lvo-'+l.k).textContent=ev.target.value+'%';run();});});
+function model(s){const r2=1-0.6*s.r2,r1=(1-0.55*s.r1)*(0.7+0.3*r2),r3=1-0.5*s.r3,r4=(1-0.55*s.r4)*(0.8+0.2*r3),b2=(1-0.65*s.b2)*(0.75+0.25*r1),b1=(1-0.5*s.b1)*(0.6+0.4*b2);return {r1,r2,r3,r4,b1,b2,harm:((r1+r2+r3+r4)/4)*(0.6+0.4*b1)*(0.7+0.3*b2)};}
+const BASE=model({r1:0,r2:0,r3:0,r4:0,b1:0,b2:0});
+ORDER.forEach(k=>{const d=document.createElement('div');d.className='bar';d.innerHTML=`<span>${LOOPS[k].code}</span><div class="track"><div class="fill" id="bf-${k}" style="width:100%"></div></div><span id="bv-${k}" class="mono">100</span>`;$('#bars').appendChild(d);});
+let shown=100;
+function run(){const s={};for(const k in lv)s[k]=lv[k]/100;const m=model(s),idx=Math.round(m.harm/BASE.harm*100);
+ ORDER.forEach(k=>{const v=m[k]/BASE[k],f=$('#bf-'+k);f.style.width=(v*100)+'%';f.style.background=v>0.8?COL.harm:v>0.6?COL.gold:COL.sage;$('#bv-'+k).textContent=Math.round(v*100);nodeEls[k].halo.setAttribute('r',44+v*26);nodeEls[k].halo.style.opacity=(0.05+v*0.16).toFixed(2);});
+ edgeEls.forEach(({e,p})=>{const k=e.f==='core'?e.t:e.f,v=m[k]/BASE[k];p.style.setProperty('--spd',(1.1/Math.max(v,0.15)).toFixed(2)+'s');p.style.opacity=(0.25+v*0.75).toFixed(2);});
+ animateNum(idx);$('#harm').style.color=idx>80?COL.harm:idx>55?COL.goldD:COL.sage;
+ $('#harmtxt').textContent=idx>=99?"Today's system, running as designed.":idx>80?'Small changes. The loops still run close to full speed.':idx>55?'The connections are carrying the change through the system.':'A different system: the same supply chain, with far less harm built in.';}
+function animateNum(target){if(reduce){shown=target;$('#harm').textContent=target;return;}const from=shown,st=performance.now();(function tick(t){const k=Math.min(1,(t-st)/400);shown=Math.round(from+(target-from)*k);$('#harm').textContent=shown;if(k<1)requestAnimationFrame(tick);})(st);}
+function setLv(map){LEVERS.forEach(l=>{const v=map[l.k]||0;lv[l.k]=v;$('#lv-'+l.k).value=v;$('#lvo-'+l.k).textContent=v+'%';});run();}
+$('#allOn').addEventListener('click',()=>setLv({r1:70,r2:70,r3:70,r4:70,b1:70,b2:70}));$('#infoOnly').addEventListener('click',()=>setLv({b2:80,r4:80}));$('#reset').addEventListener('click',()=>setLv({}));run();
+
+/* R1 */
+function hours(){const h=+$('#hours').value;$('#hoursOut').textContent=h;$('#gfill').style.width=((h-35)/40*100)+'%';$('#hoursOut').style.color=h>=55?COL.harm:h>=48?COL.goldD:COL.ink;
+ $('#hoursMsg').innerHTML=h>=55?'<b style="color:var(--harm)">Over the line.</b> At 55+ hours a week, the WHO/ILO estimate is about <b>35% higher stroke risk</b> and <b>17% higher risk of dying from heart disease</b> than at 35–40 hours.':`<b>${55-h} hour${55-h===1?'':'s'}</b> below the 55-hour threshold where the WHO/ILO study found sharply higher risk of stroke and heart disease.`;}
+$('#hours').addEventListener('input',hours);hours();
+
+/* R2 */
+const CTR=[{y:2011,n:542,p:12},{y:2012,n:715,p:15},{y:2013,n:749,p:16},{y:2014,n:802,p:16.7}];
+(function(){const s=$('#contractChart'),L=50,R=500,T=24,B=210,max=900,g=el('g',{class:'grid'},s);[0,300,600,900].forEach(v=>{const y=B-(B-T)*v/max;el('line',{x1:L,x2:R,y1:y,y2:y},g);el('text',{x:L-8,y:y+4,'text-anchor':'end'},s,v);});const bw=(R-L)/CTR.length;
+ CTR.forEach((d,i)=>{const x=L+i*bw+bw*0.22,w=bw*0.56,h=(B-T)*d.n/max;const r=el('rect',{x,y:reduce?B-h:B,width:w,height:reduce?h:0,rx:4,fill:i===CTR.length-1?COL.harm:COL.ink,opacity:i===CTR.length-1?1:.85},s);r.style.transition='y .9s ease, height .9s ease';if(!reduce)setTimeout(()=>{r.setAttribute('y',B-h);r.setAttribute('height',h);},200+i*130);el('text',{x:x+w/2,y:B-h-24,'text-anchor':'middle',style:'fill:#111418;font-size:13px;font-weight:500'},s,d.n);el('text',{x:x+w/2,y:B-h-9,'text-anchor':'middle',style:'fill:#8a6a1f'},s,d.p+'% of all');el('text',{x:x+w/2,y:B+18,'text-anchor':'middle'},s,d.y);});})();
+const cellsB=$('#cellsB');for(let i=0;i<200;i++)cellsB.appendChild(document.createElement('i'));
+function picto(){const b=[...cellsB.children];b.forEach(c=>c.classList.remove('on'));const n=Math.round(16.7/0.5);if(reduce){for(let i=0;i<n;i++)b[i].classList.add('on');return;}let i=0;const iv=setInterval(()=>{b[i].classList.add('on');i++;if(i>=n)clearInterval(iv);},45);}
+picto();$('#replay2').addEventListener('click',picto);
+
+/* R3 */
+const YR={2019:{r:7.9,h:5.1,note:'2019: robotic sites more than 54% higher. Non-robotic rate derived from that gap (≈5.1).'},2021:{r:7.3,h:5.7,note:'2021: robotic 7.3 vs non-robotic 5.7 per 100 workers.'}};let yr=2019;
+function setYr(y){yr=y;const d=YR[y];$('#fRobot').style.width=(d.r/9*100)+'%';$('#fHuman').style.width=(d.h/9*100)+'%';$('#vRobot').textContent=d.r;$('#vHuman').textContent=d.h;$('#yrNote').textContent='Serious injuries per 100 workers, Amazon sortable facilities. '+d.note;$$('[data-yr]').forEach(b=>b.classList.toggle('on',+b.dataset.yr===y));ws();}
+$$('[data-yr]').forEach(b=>b.addEventListener('click',()=>setYr(+b.dataset.yr)));
+function ws(){const n=+$('#ws').value,d=YR[yr];$('#extraOut').textContent=Math.round((d.r-d.h)*n/100).toLocaleString();$('#extraTxt').textContent=`more serious injuries a year in a ${n.toLocaleString()}-person robotic warehouse, at ${yr} rates`;}
+$('#ws').addEventListener('input',ws);setTimeout(()=>setYr(2019),250);
+const pA=$('#pickA'),pB=$('#pickB');for(let i=0;i<400;i++){const a=document.createElement('i');if(i<100)a.className='on';pA.appendChild(a);const b=document.createElement('i');b.className='on';pB.appendChild(b);}
+
+/* B1 inspections */
+const INSP=[{y:1992,v:84,s:'s2',t:'First Death on the Job report: 84 years.'},{y:2003,v:80,s:'s3',t:'2003 report: 80 years.'},{y:2012,v:131,s:'s3',t:'2012 report: 131 years.'},{y:2014,v:139,s:'s3',t:'2014 report: 139 years.'},{y:2018,v:158,s:'s3',t:'2018 report: 764 federal inspectors for 9 million workplaces, 158 years.'},{y:2023,v:190,s:'s3',t:'2023 report: 190 years.'},{y:2024,v:186,s:'s3',t:'2024 report: 186 years, $3.93 of OSHA budget per worker.'},{y:2025,v:185,s:'s3',t:'2025 report: 185 years.'},{y:2026,v:191,s:'s2',t:'2026 report: 191 years. About 5 inspectors per million workers, the lowest in at least 45 years.'}];
+(function(){const s=$('#inspChart'),L=44,R=500,T=20,B=214,y0=1990,y1=2027,max=220,X=y=>L+(R-L)*(y-y0)/(y1-y0),Y=v=>B-(B-T)*v/max,g=el('g',{class:'grid'},s);
+ [0,50,100,150,200].forEach(v=>{el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v)},g);el('text',{x:L-8,y:Y(v)+4,'text-anchor':'end'},s,v);});[1992,2000,2010,2020,2026].forEach(y=>el('text',{x:X(y),y:B+18,'text-anchor':'middle'},s,y));
+ el('line',{x1:L,x2:R,y1:Y(80),y2:Y(80),stroke:COL.sage,'stroke-dasharray':'3 5'},s);el('text',{x:R,y:Y(80)+15,'text-anchor':'end',style:'fill:#2f6b5a'},s,'one human lifetime ≈ 80 yrs');
+ el('path',{d:INSP.map((d,i)=>(i?'L':'M')+X(d.y)+','+Y(d.v)).join(' ')+` L${X(2026)},${B} L${X(1992)},${B} Z`,fill:COL.gold,opacity:.14},s);
+ el('path',{d:INSP.map((d,i)=>(i?'L':'M')+X(d.y)+','+Y(d.v)).join(' '),fill:'none',stroke:COL.goldD,'stroke-width':2.5,'stroke-linejoin':'round'},s);
+ INSP.forEach((d,i)=>{const gp=el('g',{class:'pt',tabindex:'0',role:'button','aria-label':d.y+': '+d.v+' years'},s);el('circle',{cx:X(d.y),cy:Y(d.v),r:12,fill:'transparent'},gp);el('circle',{class:'ring',cx:X(d.y),cy:Y(d.v),r:i===INSP.length-1?6:4.5,fill:i===INSP.length-1?COL.harm:COL.goldD},gp);
+  if(i===0||i===INSP.length-1)el('text',{x:X(d.y)+(i?-8:8),y:Y(d.v)-12,'text-anchor':i?'end':'start',style:'fill:#111418;font-weight:500'},s,d.v+' yrs');
+  const show=()=>{$('#inspOut').innerHTML=`<b class="mono">${d.y}</b> · ${d.t}<sup class="cite"><a href="#${d.s}">${d.s.slice(1)}</a></sup>`;};gp.addEventListener('click',show);gp.addEventListener('mouseenter',show);gp.addEventListener('focus',show);});})();
+function timeline(id,outId,start,end,marks,gapTo){const box=$(id);box.innerHTML='';const ax=document.createElement('div');ax.className='axis';box.appendChild(ax);const P=y=>((y-start)/(end-start)*100);const gap=document.createElement('div');gap.className='gap';gap.style.left='0%';gap.style.width=P(gapTo)+'%';ax.appendChild(gap);
+ marks.forEach((m,i)=>{const b=document.createElement('button');b.className='m'+(m.cls?' '+m.cls:'');b.style.left=P(m.y)+'%';b.setAttribute('aria-label',(m.label||m.y)+': '+m.t);const lab=document.createElement('span');lab.className='y'+(i%2?' up':'');lab.style.left=P(m.y)+'%';lab.textContent=m.label||m.y;
+  const show=()=>{$$(id+' .m').forEach(x=>x.classList.remove('on'));b.classList.add('on');$(outId).innerHTML=`<b class="mono">${m.label||m.y}</b> · ${m.t}`+(m.s?`<sup class="cite"><a href="#${m.s}">${m.s.slice(1)}</a></sup>`:'');};b.addEventListener('click',show);b.addEventListener('mouseenter',show);b.addEventListener('focus',show);ax.appendChild(b);ax.appendChild(lab);if(i===marks.length-1)show();});}
+timeline('#silica','#silicaOut',1971,2017,[{y:1971,t:'OSHA adopts its original silica limit, based on science from the 1920s.',s:'s13'},{y:1974,t:'NIOSH recommends cutting the limit in half. OSHA seeks comment. No rule follows.',s:'s13'},{y:1997,t:'Silica returns to OSHA’s regulatory agenda.',s:'s14'},{y:2011,t:'Proposed rule sent for White House review. A 90-day review becomes 921 days.',s:'s14'},{y:2013,t:'OSHA finally proposes the limit NIOSH recommended in 1974.',s:'s13'},{y:2016,cls:'end',t:'Final rule adopted, 42 years after the recommendation. OSHA estimates about 600 lives saved a year.',s:'s15'}],2016);
+timeline('#heat','#heatOut',2021,2026.9,[{y:2021.8,label:'Oct 2021',t:'OSHA opens rulemaking on a federal heat standard (advance notice).',s:'s25'},{y:2024.66,label:'Aug 2024',t:'Proposed rule published in the Federal Register.',s:'s25'},{y:2025.5,label:'Jul 2025',cls:'open',t:'Public hearing concludes. At the latest status the sources show, the standard is still at the proposed stage.',s:'s25'}],2025.5);
+
+/* R4 */
+const rb=$('#rebound');let horizon=15;
+function rebound(){const e=+$('#eff').value/100,g=+$('#vol').value/100;$('#effOut').textContent=(+$('#eff').value).toFixed(1)+'%';$('#volOut').textContent=(+$('#vol').value).toFixed(1)+'%';const yrs=horizon,inten=[],vol=[],tot=[];
+ for(let t=0;t<=yrs;t++){const i=100*Math.pow(1-e,t),v=100*Math.pow(1+g,t);inten.push(i);vol.push(v);tot.push(i*v/100);}
+ const max=Math.max(150,Math.ceil(Math.max(...vol,...tot)/50)*50),L=46,R=470,T=18,Bt=228,X=t=>L+(R-L)*t/yrs,Y=v=>Bt-(Bt-T)*v/max;rb.innerHTML='';const grid=el('g',{class:'grid'},rb),step=max>300?100:50;
+ for(let v=0;v<=max;v+=step){el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v)},grid);el('text',{x:L-8,y:Y(v)+4,'text-anchor':'end'},rb,v);}
+ (yrs===6?[0,2,4,6]:[0,5,10,15]).forEach(t=>el('text',{x:X(t),y:Bt+18,'text-anchor':'middle'},rb,yrs===6?String(2012+t):'Yr '+t));
+ el('path',{d:tot.map((v,t)=>(t?'L':'M')+X(t)+','+Y(v)).join(' ')+` L${X(yrs)},${Y(0)} L${X(0)},${Y(0)} Z`,fill:COL.harm,opacity:.08},rb);
+ const line=(arr,col,w,dash)=>{el('path',{d:arr.map((v,t)=>(t?'L':'M')+X(t)+','+Y(v)).join(' '),fill:'none',stroke:col,'stroke-width':w,'stroke-dasharray':dash||'none','stroke-linecap':'round'},rb);el('circle',{cx:X(yrs),cy:Y(arr[yrs]),r:4,fill:col},rb);};
+ line(vol,COL.graph,1.6,'4 5');line(inten,COL.sage,2.4);line(tot,COL.harm,3);
+ const items=[['Volume',vol[yrs],COL.graph],['Total impact',tot[yrs],COL.harm],['Per unit',inten[yrs],COL.sage]].sort((a,b)=>a[1]-b[1]);let lastY=999;items.forEach(it=>{let y=Y(it[1])+16;if(lastY-y<14)y=lastY-14;lastY=y;el('text',{x:R-4,y,'text-anchor':'end',style:'fill:'+it[2]+';font-weight:500'},rb,it[0]);});
+ const ch=Math.round((tot[yrs]-100)*10)/10;$('#totOut').textContent=(ch>0?'+':'')+(yrs===6?ch.toFixed(1):Math.round(ch))+'%';$('#totOut').style.color=ch>0?COL.harm:COL.sage;$('#totTxt').textContent='total impact after '+yrs+' years'+(ch>0?', even though every unit got greener':'. Efficiency is outpacing growth.');}
+['eff','vol'].forEach(id=>$('#'+id).addEventListener('input',()=>{horizon=15;$('#rbNote').textContent='Illustrative model over 15 years. Today = 100.';rebound();}));
+$('#imoPreset').addEventListener('click',()=>{const e=1-Math.pow(0.89,1/6),g=Math.pow(1.096/0.89,1/6)-1;$('#eff').value=(e*100).toFixed(1);$('#vol').value=(g*100).toFixed(1);horizon=6;$('#rbNote').innerHTML='Shipping, 2012–2018: intensity ~11% better and total GHG +9.6%, from the Fourth IMO GHG Study.<sup class="cite"><a href="#s16">16</a></sup><sup class="cite"><a href="#s17">17</a></sup> The volume line is implied from those two figures.';rebound();});
+rebound();
+
+/* B2 */
+const ib=$('#iceberg');const REPNOTE={32:['Michigan, 1999–2001: BLS estimated 281,567 cases a year, researchers estimated 869,034. About 32% captured.','s21'],67:['Low end of the national estimate: the survey missed 33% of injuries, so about 67% captured.','s20'],22:['Agriculture: the survey was estimated to miss 77.6% of cases, so about 22% captured.','s23']};
+function iceberg(){const r=+$('#rep').value/100,cap=Math.round(100*r),miss=100-cap;ib.innerHTML='';const top=26,bot=262,Hh=bot-top,water=top+Hh*r;
+ const poly=[[260,top],[300,top+30],[330,top+60],[380,top+110],[430,top+160],[420,top+200],[360,bot],[180,bot],[110,top+190],[130,top+130],[190,top+70],[225,top+30]].map(p=>p.join(',')).join(' ');
+ el('rect',{x:0,y:0,width:520,height:280,fill:'#fbfaf6',rx:10},ib);el('polygon',{points:poly,fill:'#fff',stroke:COL.ink,'stroke-width':1.5},ib);
+ el('rect',{x:0,y:water,width:520,height:280-water,fill:'#1f3c4a',opacity:.78},ib);el('line',{x1:0,x2:520,y1:water,y2:water,stroke:COL.gold,'stroke-width':2.5,'stroke-dasharray':'8 6'},ib);
+ el('text',{x:16,y:Math.max(water-10,18),style:'fill:#8a6a1f;font-weight:500'},ib,'Official count: '+cap);if(miss>0)el('text',{x:16,y:Math.min(water+22,272),style:'fill:#fff;font-weight:500'},ib,'Missed: '+miss);
+ $('#hidOut').textContent=miss;$('#hidTxt').textContent=miss?'of every 100 real incidents never reach the official count':'missed. Every incident is visible, so every incident can be fixed.';
+ const key=+$('#rep').value;$('#repNote').innerHTML=REPNOTE[key]?REPNOTE[key][0]+`<sup class="cite"><a href="#${REPNOTE[key][1]}">${REPNOTE[key][1].slice(1)}</a></sup>`:'Illustrative. Drag to any capture rate, or load a study above.';$$('[data-rep]').forEach(b=>b.classList.toggle('on',+b.dataset.rep===key));}
+$('#rep').addEventListener('input',iceberg);$$('[data-rep]').forEach(b=>b.addEventListener('click',()=>{$('#rep').value=b.dataset.rep;iceberg();}));iceberg();
+
+/* TRENDS 2035 */
+function linfit(pts){const n=pts.length,mx=pts.reduce((a,p)=>a+p[0],0)/n,my=pts.reduce((a,p)=>a+p[1],0)/n;let num=0,den=0;pts.forEach(p=>{num+=(p[0]-mx)*(p[1]-my);den+=(p[0]-mx)**2;});const m=num/den;return x=>my+m*(x-mx);}
+const TR={
+ insp:{pts:INSP.map(d=>[d.y,d.v]),unit:'years',fmt:v=>Math.round(v),lbl:'Years for federal OSHA to inspect every workplace once',x0:1990,src:'s2',srcs:'<sup class="cite"><a href="#s2">2</a></sup><sup class="cite"><a href="#s3">3</a></sup>',txt:v=>`years for one inspection per workplace by 2035 if the 1992–2026 trend continues. Roughly ${Math.round(v/80*10)/10} human lifetimes.`},
+ hours:{pts:[[2000,745/1.29],[2016,745]],unit:'K deaths',fmt:v=>Math.round(v)+'K',lbl:'Deaths linked to long working hours (thousands)',x0:1998,srcs:'<sup class="cite"><a href="#s1">1</a></sup>',txt:v=>`deaths a year linked to long hours by 2035 if the 2000–2016 growth (+29%) continued in a straight line. 2000 value derived from the reported 29% increase.`},
+ ship:{pts:[[2012,977],[2018,1076]],unit:'Mt CO₂e',fmt:v=>Math.round(v).toLocaleString(),lbl:'Total shipping GHG emissions (million tonnes CO₂e)',x0:2010,srcs:'<sup class="cite"><a href="#s16">16</a></sup><sup class="cite"><a href="#s19">19</a></sup>',txt:v=>`million tonnes CO₂e from shipping by 2035 if the 2012–2018 trend continued. The IMO study's own business-as-usual range reaches up to +50% over 2018 by 2050.`}
+};
+let trKey='insp';
+function drawTrend(){const d=TR[trKey],s=$('#trendChart');s.innerHTML='';const f=linfit(d.pts),last=d.pts[d.pts.length-1][0],proj=f(2035);
+ const ys=d.pts.map(p=>p[1]).concat([proj]),max=Math.ceil(Math.max(...ys)*1.15/50)*50,min=trKey==='insp'?0:Math.floor(Math.min(...ys)*0.8/50)*50;
+ const L=60,R=840,T=30,B=290,X=x=>L+(R-L)*(x-d.x0)/(2036-d.x0),Y=v=>B-(B-T)*(v-min)/(max-min),g=el('g',{class:'grid'},s);
+ for(let i=0;i<=4;i++){const v=min+(max-min)*i/4;el('line',{x1:L,x2:R,y1:Y(v),y2:Y(v)},g);el('text',{x:L-10,y:Y(v)+4,'text-anchor':'end'},s,Math.round(v).toLocaleString());}
+ el('text',{x:L,y:16},s,d.lbl);
+ const decs=[];for(let y=Math.ceil(d.x0/5)*5;y<=2035;y+=5)decs.push(y);decs.forEach(y=>el('text',{x:X(y),y:B+20,'text-anchor':'middle'},s,y));
+ el('rect',{x:X(last),y:T,width:X(2035)-X(last),height:B-T,fill:COL.gold,opacity:.07},s);
+ el('text',{x:X(last)+8,y:T+16,style:'fill:#8a6a1f'},s,'extrapolation');
+ el('path',{d:d.pts.map((p,i)=>(i?'L':'M')+X(p[0])+','+Y(p[1])).join(' '),fill:'none',stroke:COL.ink,'stroke-width':2.5},s);
+ const pj=el('path',{d:`M${X(last)},${Y(f(last))} L${X(2035)},${Y(proj)}`,fill:'none',stroke:COL.harm,'stroke-width':2.5,'stroke-dasharray':'7 6'},s);
+ el('path',{d:`M${X(d.pts[0][0])},${Y(f(d.pts[0][0]))} L${X(last)},${Y(f(last))}`,fill:'none',stroke:COL.harm,'stroke-width':1,opacity:.4},s);
+ d.pts.forEach(p=>el('circle',{cx:X(p[0]),cy:Y(p[1]),r:4.5,fill:COL.ink},s));
+ el('circle',{cx:X(2035),cy:Y(proj),r:8,fill:COL.harm},s);el('circle',{cx:X(2035),cy:Y(proj),r:14,fill:'none',stroke:COL.harm,opacity:.4},s);
+ el('text',{x:X(2035)-12,y:Y(proj)-14,'text-anchor':'end',style:'fill:#b23a2e;font-weight:500;font-size:13px'},s,'2035 · '+d.fmt(proj));
+ if(!reduce){const len=pj.getTotalLength();pj.style.strokeDasharray=len;pj.style.strokeDashoffset=len;pj.getBoundingClientRect();pj.style.transition='stroke-dashoffset 1.2s ease';pj.style.strokeDashoffset=0;setTimeout(()=>{pj.style.strokeDasharray='7 6';pj.style.transition='none';},1300);}
+ $('#trOut').textContent=d.fmt(proj);$('#trTxt').textContent=d.txt(proj);$('#trNote').innerHTML='Data points from cited sources'+d.srcs+'. Dashed line: ZM Safety &amp; Risk straight-line extrapolation. Not a forecast.';
+ $$('[data-tr]').forEach(b=>b.classList.toggle('on',b.dataset.tr===trKey));}
+$$('[data-tr]').forEach(b=>b.addEventListener('click',()=>{trKey=b.dataset.tr;drawTrend();}));drawTrend();
+
+/* LOOP AUDIT */
+const QS=[
+ ['r1','Overtime or extended shifts are used to recover when schedules slip.'],['r1','Weekly hours per person are not tracked as a risk indicator.'],
+ ['r2','Contracts are awarded mainly on price.'],['r2','Contractor incidents are reported separately from, or left out of, headline safety numbers.'],
+ ['r3','When new equipment or software goes live, output targets go up.'],['r3','Nobody reviews how jobs actually changed after automation.'],
+ ['b1','We wait for a regulation before acting on an emerging hazard.'],['b1','Our compliance gap reviews happen less than once a year.'],
+ ['r4','Sustainability reporting leads with per-unit (intensity) figures rather than absolute totals.'],['r4','Efficiency gains are used to justify more volume.'],
+ ['b2','People hesitate to report incidents or near misses.'],['b2','Bonuses or performance reviews reward low incident counts.']];
+const OPTS=['Rarely','Sometimes','Often','Almost always'];const ans=new Array(QS.length).fill(null);
+const SERV={r1:'Data, dashboards and systems: hours and fatigue as leading indicators.',r2:'Programs and compliance support: contractor management procedures and prequalification documentation.',r3:'Training and e-learning, plus risk assessment documentation for changed work.',b1:'Risk assessments and compliance support: gap reviews against legislation and standards, and audit preparation.',r4:'Safety and sustainability data: absolute vs. intensity reporting and dashboards.',b2:'Data and training: reporting systems people trust, and leading indicators of reporting quality.'};
+const qBox=$('#questions');
+QS.forEach((q,i)=>{const d=document.createElement('div');d.className='q';d.innerHTML=`<p><span class="lp">${LOOPS[q[0]].code}</span>${i+1}. ${q[1]}</p><div class="opts" role="group" aria-label="Answer statement ${i+1}">${OPTS.map((o,j)=>`<button data-q="${i}" data-a="${j}">${o}</button>`).join('')}</div>`;qBox.appendChild(d);});
+qBox.addEventListener('click',e=>{const b=e.target.closest('button[data-q]');if(!b)return;const i=+b.dataset.q;ans[i]=+b.dataset.a;$$(`button[data-q="${i}"]`).forEach(x=>x.classList.toggle('on',x===b));audit();});
+const RAD=['r2','r1','b2','b1','r4','r3'];
+function scores(){const s={};RAD.forEach(k=>{const idx=QS.map((q,i)=>q[0]===k?i:-1).filter(i=>i>=0);const got=idx.filter(i=>ans[i]!=null);s[k]=got.length?got.reduce((a,i)=>a+ans[i],0)/(got.length*3)*100:0;});return s;}
+function radar(s){const r=$('#radar');r.innerHTML='';const cx=180,cy=170,R=118,ang=i=>-Math.PI/2+i*Math.PI*2/6;
+ [.25,.5,.75,1].forEach(f=>el('polygon',{points:RAD.map((k,i)=>[cx+Math.cos(ang(i))*R*f,cy+Math.sin(ang(i))*R*f].join(',')).join(' '),fill:f===1?'#fbfaf6':'none',stroke:COL.stone},r));
+ RAD.forEach((k,i)=>{el('line',{x1:cx,y1:cy,x2:cx+Math.cos(ang(i))*R,y2:cy+Math.sin(ang(i))*R,stroke:COL.stone},r);const lx=cx+Math.cos(ang(i))*(R+22),ly=cy+Math.sin(ang(i))*(R+22)+4;el('text',{x:lx,y:ly,'text-anchor':'middle',style:'font-family:Archivo,sans-serif;font-weight:800;font-size:13px;fill:'+(LOOPS[k].type==='b'?COL.goldD:COL.ink)},r,LOOPS[k].code);});
+ const p=RAD.map((k,i)=>{const f=Math.max(.02,s[k]/100);return [cx+Math.cos(ang(i))*R*f,cy+Math.sin(ang(i))*R*f];});
+ el('polygon',{points:p.map(q=>q.join(',')).join(' '),fill:COL.harm,'fill-opacity':.18,stroke:COL.harm,'stroke-width':2},r);p.forEach(q=>el('circle',{cx:q[0],cy:q[1],r:3.5,fill:COL.harm},r));}
+function audit(){const s=scores(),done=ans.filter(a=>a!=null).length;$('#aProg').style.width=(done/QS.length*100)+'%';radar(s);
+ if(!done){$('#aText').innerHTML='<p class="dim">Answer the statements to build your profile. Scores update as you go.</p>';$('#aCopy').disabled=true;return;}
+ const top=RAD.slice().sort((a,b)=>s[b]-s[a])[0],L=LOOPS[top],avg=Math.round(RAD.reduce((a,k)=>a+s[k],0)/6);
+ $('#aText').innerHTML=`<p class="eyebrow">${done<QS.length?'Provisional · '+done+' of '+QS.length+' answered':'Complete'}</p><h3>Dominant loop: ${L.code} · ${L.title}</h3><p class="dim" style="font-size:15px">Loop pressure ${Math.round(s[top])}% · overall ${avg}%</p><p style="font-size:15px"><b>Leverage point:</b> ${L.lev}. ${L.levTxt}</p><p style="font-size:15px"><b>Where ZM can help (advisory):</b> ${SERV[top]}</p><p><a href="#work">See how ZM works →</a></p>`;
+ $('#aCopy').disabled=false;}
+$('#aReset').addEventListener('click',()=>{ans.fill(null);$$('button[data-q]').forEach(b=>b.classList.remove('on'));audit();});
+$('#aCopy').addEventListener('click',async()=>{const s=scores();const txt='Necessary Risk · Loop audit (ZM Safety & Risk)\n'+RAD.map(k=>`${LOOPS[k].code} ${LOOPS[k].title}: ${Math.round(s[k])}%`).join('\n')+'\nSelf-assessment for discussion only.';try{await navigator.clipboard.writeText(txt);$('#aCopy').textContent='Copied';}catch(e){$('#aCopy').textContent='Copy not available here';}setTimeout(()=>$('#aCopy').textContent='Copy my results',2000);});
+audit();
+
+/* HIDDEN COST */
+function money(v){return v>=1e6?'$'+(v/1e6).toFixed(1)+'M':v>=1e3?'$'+Math.round(v/1e3)+'K':'$'+Math.round(v);}
+function calc(){const w=Math.max(0,+$('#cWork').value||0),rate=Math.max(0,+$('#cRate').value||0),cap=+$('#cCap').value/100,cost=Math.max(0,+$('#cCost').value||0),h=+$('#cHrs').value;
+ const rep=w*rate/100,real=cap>0?rep/cap:rep,hid=real-rep;
+ $('#oRep').textContent=Math.round(rep).toLocaleString();$('#oReal').textContent=Math.round(real).toLocaleString();$('#oHid').textContent=Math.round(hid).toLocaleString();$('#oCost').textContent=money(hid*cost);
+ $('#cCapOut').textContent=Math.round(cap*100)+'% reported. Research range: about 31–67% captured.';$('#cHrsOut').textContent=h+' hours';
+ $$('[data-cap]').forEach(b=>b.classList.toggle('on',+b.dataset.cap===Math.round(cap*100)));
+ $('#oHrsMsg').innerHTML=h>=55?'<b style="color:var(--harm)">R1 warning:</b> crews at 55+ hours sit in the range the WHO/ILO linked to about 35% higher stroke risk and 17% higher risk of dying from heart disease.<sup class="cite"><a href="#s1">1</a></sup>':`<b>R1:</b> busiest crews are ${55-h} hour${55-h===1?'':'s'} under the 55-hour WHO/ILO threshold.`;
+ $('#oLoop').innerHTML=`<b>B2:</b> ${Math.round(hid).toLocaleString()} injuries a year that never reach the dashboard also never reach the investigation, the trend line or the budget.`;}
+['cWork','cRate','cCap','cCost','cHrs'].forEach(id=>$('#'+id).addEventListener('input',calc));
+$$('[data-cap]').forEach(b=>b.addEventListener('click',()=>{$('#cCap').value=b.dataset.cap;calc();}));calc();
+})();
+</script>
+</body>
+</html>
